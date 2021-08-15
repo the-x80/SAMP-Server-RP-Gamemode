@@ -1,0 +1,53 @@
+EXPORTS
+	Supports
+	Load
+	Unload
+	AmxLoad
+	AmxUnload
+	ProcessTick
+
+	OnGameModeInit
+	OnGameModeExit
+
+	OnPlayerConnect
+	OnPlayerDisconnect
+	OnPlayerRequestClass
+
+	OnPlayerUpdate
+	OnPlayerStateChange
+	OnUnoccupiedVehicleUpdate
+
+	OnPlayerEnterCheckpoint
+	OnPlayerLeaveCheckpoint
+
+	OnPlayerEnterRaceCheckpoint
+	OnPlayerLeaveRaceCheckpoint
+
+	OnPlayerStreamIn
+	OnPlayerStreamOut
+
+	OnPlayerEnterVehicle
+	OnPlayerExitVehicle
+
+	OnPlayerClickMap
+
+	OnVehicleSpawn
+	OnVehicleDeath
+
+	OnVehicleMod
+	OnVehiclePaintjob
+
+	OnPlayerSpawn
+	OnPlayerDeath
+
+	OnPlayerRequestSpawn
+
+	OnObjectMoved
+	OnPlayerObjectMoved
+
+	OnPlayerPickupPickup
+
+	OnRconCommand
+	OnPlayerText
+	OnPlayerCommandText
+	OnDialogResponse

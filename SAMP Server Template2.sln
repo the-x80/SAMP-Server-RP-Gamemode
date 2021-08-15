@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SAMP Server Template2", "SAMP Server Template2\SAMP Server Template2.vcxproj", "{C77200D7-9204-4745-8762-717E1ACB6386}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Aplha|x64 = Aplha|x64
+		Aplha|x86 = Aplha|x86
+		Beta|x64 = Beta|x64
+		Beta|x86 = Beta|x86
+		CLR Debug|x64 = CLR Debug|x64
+		CLR Debug|x86 = CLR Debug|x86
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Aplha|x64.ActiveCfg = Aplha|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Aplha|x64.Build.0 = Aplha|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Aplha|x86.ActiveCfg = Aplha|Win32
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Aplha|x86.Build.0 = Aplha|Win32
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Beta|x64.ActiveCfg = Beta|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Beta|x64.Build.0 = Beta|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Beta|x86.ActiveCfg = Beta|Win32
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Beta|x86.Build.0 = Beta|Win32
+		{C77200D7-9204-4745-8762-717E1ACB6386}.CLR Debug|x64.ActiveCfg = CLR Debug|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.CLR Debug|x64.Build.0 = CLR Debug|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.CLR Debug|x86.ActiveCfg = CLR Debug|Win32
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Debug|x64.ActiveCfg = Debug|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Debug|x64.Build.0 = Debug|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Debug|x86.ActiveCfg = Debug|Win32
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Debug|x86.Build.0 = Debug|Win32
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Release|x64.ActiveCfg = Release|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Release|x64.Build.0 = Release|x64
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Release|x86.ActiveCfg = Release|Win32
+		{C77200D7-9204-4745-8762-717E1ACB6386}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {079D7823-DACC-4C7E-A0C0-C2CF8E5D7C96}
+	EndGlobalSection
+EndGlobal
