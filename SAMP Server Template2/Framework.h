@@ -10,6 +10,7 @@
 
 #include "Stack.h"
 
+#include "StackTrace.h"
 
 #include "Vector3.h"
 #include "Quaternion.h"

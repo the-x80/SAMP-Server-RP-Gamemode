@@ -4,6 +4,7 @@ class Delegate {
 private:
 protected:
 	void* (*pointer)();
+	void** params;
 	int parameterCount;
 public:
 	Delegate();

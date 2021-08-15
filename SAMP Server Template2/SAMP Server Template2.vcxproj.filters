@@ -48,6 +48,9 @@
     <ClCompile Include="SAMPExceptions.cpp">
       <Filter>SAMP SDK Wrapper\Exceptions</Filter>
     </ClCompile>
+    <ClCompile Include="StackTrace.cpp">
+      <Filter>Framework\Diagnostics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="Stack.h">
       <Filter>Framework\Generics\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="StackTrace.h">
+      <Filter>Framework\Diagnostics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

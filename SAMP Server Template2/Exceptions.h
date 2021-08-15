@@ -1,5 +1,8 @@
 #pragma once
+#include <stdexcept>
 #include <exception>
+
+class StackTrace;
 
 namespace Exceptions {
 	class Exception : public std::exception {
@@ -9,14 +12,13 @@ namespace Exceptions {
 		/// </summary>
 		char* cstr_FullMessage;
 		char* message;
+		StackTrace* stackTrace;
 	public:
 		Exception() noexcept;
 		Exception(const char* msg) noexcept;
 		~Exception() noexcept;
 
 		virtual char* ToString();
-
-
 	protected:
 		void PrintToOutput();
 	};

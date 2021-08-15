@@ -296,6 +296,7 @@
     <ClCompile Include="SAMP SDK\amxplugin.cpp" />
     <ClCompile Include="SAMPExceptions.cpp" />
     <ClCompile Include="sampgdk.c" />
+    <ClCompile Include="StackTrace.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Vehicle.cpp" />
   </ItemGroup>
@@ -327,6 +328,7 @@
     <ClInclude Include="SAMPExceptions.h" />
     <ClInclude Include="sampgdk.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="StackTrace.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vehicle.h" />
   </ItemGroup>
