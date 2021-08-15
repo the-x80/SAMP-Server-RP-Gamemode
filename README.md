@@ -2,7 +2,8 @@
 
 
 <b>Info</b>
+<p>
 San Andreas Multiplayer Roleplay Gamemode.
 
-<b>Build</b>
-Fill in this later.
+
+</p>
