@@ -19,6 +19,8 @@ Exceptions::Exception::Exception(const char* msg) noexcept
 	this->message = new char[n_MessageLength+1];
 	memcpy_s(this->message, n_MessageLength+1, '\0', n_MessageLength+1);
 	strcpy_s(this->message, n_MessageLength, msg);
+
+	cstr_FullMessage = new char[0];
 }
 
 Exceptions::Exception::~Exception()
@@ -30,6 +32,10 @@ Exceptions::Exception::~Exception()
 char* Exceptions::Exception::ToString()
 {
 	return this->cstr_FullMessage;
+}
+
+void Exceptions::Exception::PrintToOutput()
+{
 }
 
 Exceptions::NullPointerException::NullPointerException() noexcept

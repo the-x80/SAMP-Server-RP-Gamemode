@@ -192,6 +192,9 @@
       <ModuleDefinitionFile>Dll1.def</ModuleDefinitionFile>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
+    <Xdcmake>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+    </Xdcmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='CLR Debug|Win32'">
     <ClCompile>
@@ -278,7 +281,6 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Array.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Delegate.cpp" />
@@ -324,6 +326,7 @@
     <ClInclude Include="SAMP SDK\plugincommon.h" />
     <ClInclude Include="SAMPExceptions.h" />
     <ClInclude Include="sampgdk.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vehicle.h" />
   </ItemGroup>

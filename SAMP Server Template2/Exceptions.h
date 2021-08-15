@@ -15,6 +15,10 @@ namespace Exceptions {
 		~Exception() noexcept;
 
 		virtual char* ToString();
+
+
+	protected:
+		void PrintToOutput();
 	};
 	class NullPointerException : public Exception {
 	public:
@@ -23,6 +27,19 @@ namespace Exceptions {
 		~NullPointerException() noexcept;
 	};
 	class OutOfMemoryException : public Exception{
+
+	};
+	class BadAllocationException : public std::bad_alloc {
+		
+	};
+
+
+	class IndexOutOfBoundsException : public Exception {
+
+	};
+
+
+	class NotImplementedException : Exception {
 
 	};
 }

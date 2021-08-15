@@ -12,9 +12,6 @@
     <ClCompile Include="JSONDocument.cpp">
       <Filter>Framework\Json</Filter>
     </ClCompile>
-    <ClCompile Include="Array.cpp">
-      <Filter>Framework\Generics\Array</Filter>
-    </ClCompile>
     <ClCompile Include="Exceptions.cpp">
       <Filter>Framework\Diagnostics</Filter>
     </ClCompile>
@@ -119,6 +116,9 @@
     <ClInclude Include="SAMPExceptions.h">
       <Filter>SAMP SDK Wrapper\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Framework\Generics\Stack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">
@@ -171,6 +171,9 @@
     </Filter>
     <Filter Include="SAMP SDK Wrapper\Exceptions">
       <UniqueIdentifier>{0e5bae8d-bf13-46a0-bc9d-2788367f794a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Generics\Stack">
+      <UniqueIdentifier>{8b6b7983-33c3-4be0-9c84-4ea5c2ccb866}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
