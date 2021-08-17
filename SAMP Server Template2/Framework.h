@@ -11,6 +11,7 @@
 #include "Stack.h"
 
 #include "StackTrace.h"
+#include "Thread.h"
 
 #include "Vector3.h"
 #include "Quaternion.h"

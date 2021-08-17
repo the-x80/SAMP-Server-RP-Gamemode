@@ -51,6 +51,9 @@
     <ClCompile Include="StackTrace.cpp">
       <Filter>Framework\Diagnostics</Filter>
     </ClCompile>
+    <ClCompile Include="Thread.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="StackTrace.h">
       <Filter>Framework\Diagnostics</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

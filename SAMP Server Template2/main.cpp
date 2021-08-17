@@ -33,7 +33,6 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnGameModeInit()
 
 
 	//Initializing the worker threads
-
 	throw new Exceptions::Exception();
 	return true;
 }

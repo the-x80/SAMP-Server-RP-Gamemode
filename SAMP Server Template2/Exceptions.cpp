@@ -6,6 +6,7 @@
 #pragma comment(lib, "Dbghelp.lib")
 
 #include "Debug.h"
+#include "Array.h"
 #include "StackTrace.h"
 
 #include <string>
@@ -16,7 +17,8 @@ Exceptions::Exception::Exception() noexcept
 	
 	this->message = new char[0];
 	cstr_FullMessage = new char[0];
-	this->stackTrace = new StackTrace();
+	//this->stackTrace = new StackTrace(); Its too buggy for now. Test it out later
+	this->stackTrace = nullptr;
 }
 
 Exceptions::Exception::Exception(const char* msg) noexcept
@@ -27,14 +29,15 @@ Exceptions::Exception::Exception(const char* msg) noexcept
 	strcpy_s(this->message, n_MessageLength, msg);
 
 	cstr_FullMessage = new char[0];
-	this->stackTrace = new StackTrace();
+	//this->stackTrace = new StackTrace(); Its too buggy for now. Test it out later
+	this->stackTrace = nullptr;
 }
 
 Exceptions::Exception::~Exception()
 {
 	delete[] this->message;
 	delete[] this->cstr_FullMessage;
-	delete this->stackTrace;
+	//delete this->stackTrace;
 }
 
 char* Exceptions::Exception::ToString()
