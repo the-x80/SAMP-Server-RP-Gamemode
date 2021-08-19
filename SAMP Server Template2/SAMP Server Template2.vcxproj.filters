@@ -131,6 +131,9 @@
     <ClInclude Include="Thread.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Framework\Console</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">
@@ -186,6 +189,12 @@
     </Filter>
     <Filter Include="Framework\Generics\Stack">
       <UniqueIdentifier>{8b6b7983-33c3-4be0-9c84-4ea5c2ccb866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Diagnostics\Info Objects">
+      <UniqueIdentifier>{a48229ab-d076-4cf7-9783-8bf7731917ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Console">
+      <UniqueIdentifier>{d6d20adf-e1d6-4c43-9ee2-27fd801d1428}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

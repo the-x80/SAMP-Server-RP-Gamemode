@@ -308,6 +308,7 @@
   <ItemGroup>
     <ClInclude Include="Array.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Console.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Diagnostics.h" />

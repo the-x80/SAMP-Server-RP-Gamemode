@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 
 #include "StackTrace.h"
 #include <DbgHelp.h>
@@ -10,6 +11,16 @@
 //Perform cleanup on every failure.
 StackTrace::StackTrace()
 {
+	this->GenerateStackTrace(1);
+}
+
+StackTrace::StackTrace(int n_Skip)
+{
+	this->GenerateStackTrace(1 + n_Skip);
+}
+
+void StackTrace::GenerateStackTrace(int n_Skip)
+{
 #ifdef _DEBUG
 	char cstr_DebugMessage[1024];
 	memset(cstr_DebugMessage, 0, 1024);
@@ -18,7 +29,7 @@ StackTrace::StackTrace()
 #endif
 	this->h_Process = GetCurrentProcess();
 	this->h_Thread = GetCurrentThread();
-	
+
 
 
 	CONTEXT con_Context;
@@ -81,10 +92,14 @@ StackTrace::StackTrace()
 	SymInitialize(GetCurrentProcess(), NULL, TRUE);
 
 	//Using for loop for more flexibility. Might be used in the future
-	for (;;) {
+	for (int i=0;;i++) {
 		bool b_StackWalkResult = StackWalk64(dw_MachineType, GetCurrentProcess(),
 			GetCurrentThread(), &sf_StackFrame, &con_Context, NULL, SymFunctionTableAccess64,
 			SymGetModuleBase64, NULL);
+
+		if (i <= n_Skip) {
+			continue;
+		}
 
 		if (b_StackWalkResult == false) {//StackWalk failed.
 			//This could happen if the end of the stack has been reached
@@ -98,19 +113,33 @@ StackTrace::StackTrace()
 
 		if (sf_StackFrame.AddrPC.Offset != 0) {
 			//Valid frame
+			SYMBOL_INFO* si_Info;
+			si_Info = (SYMBOL_INFO*)malloc(sizeof(si_Info) + 256);
+			if (si_Info == nullptr) {
+				SymCleanup(GetCurrentProcess());
+				return;
+			}
+			ZeroMemory(si_Info, sizeof(si_Info) + 256);
+			si_Info->SizeOfStruct = sizeof(SYMBOL_INFO);
+			si_Info->MaxNameLen = 255;
+			DWORD64 dw_Displacement;
+
+			bool b_SymFrimAddeResult = SymFromAddr(this->h_Process, sf_StackFrame.AddrPC.Offset, &dw_Displacement, si_Info);
+
+
 			StackTraceEntry sf_Entry;
 			sf_Entry.dw_Address = sf_StackFrame.AddrPC.Offset;
-
-			
+			sf_Entry.cstr_FunctionName = new char[si_Info->NameLen+1];
+			strcpy(sf_Entry.cstr_FunctionName, si_Info->Name);
 
 			this->a_StackWalkEntries.Add(sf_Entry);
-
+			
 #if _DEBUG
 			char cstr_DebugMessage[1024];
-			wsprintf(cstr_DebugMessage, "sf_StackFrame.AddrPC.Offset = 0x%p\n", (void*)sf_StackFrame.AddrPC.Offset);
+			wsprintf(cstr_DebugMessage, "sf_StackFrame.AddrPC.Offset = 0x%p\nSymbol name is %s\n", (void*)sf_Entry.dw_Address, sf_Entry.cstr_FunctionName);
 			OutputDebugString(cstr_DebugMessage);
 #endif
-
+			free(si_Info);
 		}
 		else {
 			//Base of stack reached.

@@ -29,6 +29,9 @@ public:
 	Array<StackTraceEntry> a_StackWalkEntries;
 
 	StackTrace();
+	StackTrace(int n_Skip);
+
+	void GenerateStackTrace(int n_Skip);
 };
 
 

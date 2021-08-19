@@ -18,7 +18,7 @@ Exceptions::Exception::Exception() noexcept
 	this->message = new char[0];
 	cstr_FullMessage = new char[0];
 	//this->stackTrace = new StackTrace(); Its too buggy for now. Test it out later
-	this->stackTrace = new StackTrace();
+	this->stackTrace = new StackTrace(1);
 }
 
 Exceptions::Exception::Exception(const char* msg) noexcept
@@ -29,7 +29,7 @@ Exceptions::Exception::Exception(const char* msg) noexcept
 	strcpy_s(this->message, n_MessageLength, msg);
 
 	cstr_FullMessage = new char[0];
-	this->stackTrace = new StackTrace();
+	this->stackTrace = new StackTrace(1);
 }
 
 Exceptions::Exception::~Exception()
