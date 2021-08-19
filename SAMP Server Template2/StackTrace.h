@@ -12,7 +12,13 @@
 #include "Array.h"
 #endif
 
-
+class StackTraceEntry {
+public:
+	DWORD64 dw_Address;
+	char* cstr_FunctionName;
+	int n_LineNumber;
+	int n_ParameterCount;
+};
 class StackTrace {
 private:
 protected:
@@ -20,11 +26,9 @@ protected:
 public:
 	HANDLE h_Process;
 	HANDLE h_Thread;
-	Array<DWORD64> a_StackWalkAddresses;
+	Array<StackTraceEntry> a_StackWalkEntries;
 
 	StackTrace();
-
-	bool GenerateStackTrace(CONTEXT* ctx, int skip);
 };
 
 

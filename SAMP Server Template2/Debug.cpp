@@ -1,8 +1,11 @@
 ﻿#include <Windows.h>
-
-#include "Debug.h"
 #include "Exceptions.h"
+#include "Array.h"
+#include "Debug.h"
+
 #include <stdio.h>
+
+Array<Exceptions::Exception*> Debug::a_Exceptions;
 
 
 int CalculateTimestampSize() {
@@ -90,5 +93,11 @@ void Debug::LogWarning(const char* msg)
 
 void Debug::LogError(const char* msg)
 {
+}
+
+void Debug::Throw(Exceptions::Exception* e_Exception)
+{
+	a_Exceptions.Add(e_Exception);
+	throw e_Exception;
 }
 
