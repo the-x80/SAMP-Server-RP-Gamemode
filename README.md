@@ -7,6 +7,8 @@
 </p>
 <p>
   Still in early developement so a lot of the planned features are missing.
+  The plan is to host the gamemode on a server where anyone can join and test out any feature.
+  Ofcourse some features will be behing a Permission system for obvious reasons.
 </p>
 <p>
 <p><b>Methodology</b></p>
