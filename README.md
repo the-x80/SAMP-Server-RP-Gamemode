@@ -17,10 +17,10 @@
 
 <p><b><i>Planned features</i></b>(List not complete)</p>
 <p>
-  <p>Inventory System
-    <p>Planned to be split into character inventory(the thicgs the character can carry only on himself), backpack inventory, vehicle inventory.</p>
+  <p><i>Inventory System</i>
+    <p>Planned to be split into character inventory(the things the character can carry only on himself), backpack inventory, vehicle inventory.</p>
   </p>
-  <p>Economy system
+  <p><i>Economy system</i>
     <p>As an effort to decrease the possibility of inflation this system will be set in place.</p>
   </p>
 </p>
