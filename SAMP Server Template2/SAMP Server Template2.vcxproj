@@ -285,11 +285,15 @@
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Delegate.cpp" />
     <ClCompile Include="Diagnostics.cpp" />
+    <ClCompile Include="Event System.cpp" />
     <ClCompile Include="Exceptions.cpp" />
     <ClCompile Include="Gamemode.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Int32.cpp" />
     <ClCompile Include="JSONDocument.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MethodInfo.cpp" />
+    <ClCompile Include="ModuleInfo.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="SAMP SDK.cpp" />
@@ -312,12 +316,16 @@
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Diagnostics.h" />
+    <ClInclude Include="Event System.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Framework.h" />
     <ClInclude Include="Gamemode.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Int32.h" />
     <ClInclude Include="JSONDocument.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MethodInfo.h" />
+    <ClInclude Include="ModuleInfo.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="resource.h" />
@@ -332,6 +340,7 @@
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackTrace.h" />
     <ClInclude Include="Thread.h" />
+    <ClInclude Include="TypeInfo.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vehicle.h" />
   </ItemGroup>

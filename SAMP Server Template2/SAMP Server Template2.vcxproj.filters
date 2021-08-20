@@ -54,6 +54,18 @@
     <ClCompile Include="Thread.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Event System.cpp">
+      <Filter>Framework\Event System</Filter>
+    </ClCompile>
+    <ClCompile Include="Int32.cpp">
+      <Filter>Framework\Data Types\Int32</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodInfo.cpp">
+      <Filter>Framework\Diagnostics\Info Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInfo.cpp">
+      <Filter>Framework\Diagnostics\Info Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">
@@ -134,6 +146,21 @@
     <ClInclude Include="Console.h">
       <Filter>Framework\Console</Filter>
     </ClInclude>
+    <ClInclude Include="Event System.h">
+      <Filter>Framework\Event System</Filter>
+    </ClInclude>
+    <ClInclude Include="Int32.h">
+      <Filter>Framework\Data Types\Int32</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodInfo.h">
+      <Filter>Framework\Diagnostics\Info Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeInfo.h">
+      <Filter>Framework\Diagnostics\Info Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInfo.h">
+      <Filter>Framework\Diagnostics\Info Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">
@@ -195,6 +222,12 @@
     </Filter>
     <Filter Include="Framework\Console">
       <UniqueIdentifier>{d6d20adf-e1d6-4c43-9ee2-27fd801d1428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Event System">
+      <UniqueIdentifier>{b4b5c9e0-16ed-4e34-b58b-f95cb70947f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Data Types\Int32">
+      <UniqueIdentifier>{60c5ebf8-bb8a-436f-a075-e0f4547346a0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

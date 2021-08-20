@@ -9,7 +9,7 @@ protected:
 public:
 	Delegate();
 	Delegate(void* (*ptr)());//Adds a function with no arguments
-	Delegate(void* (*ptr)(), int argCount);//Adds a function with no arguments
+	Delegate(void* (*ptr)(), int argCount);//Adds a function with arguments
 
 
 	void Invoke();

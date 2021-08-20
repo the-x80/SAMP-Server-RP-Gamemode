@@ -1,6 +1,7 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
+//Work in progress-
 
 namespace Console {
 	enum class ForegroundColor {

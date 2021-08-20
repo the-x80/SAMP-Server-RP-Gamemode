@@ -1,5 +1,7 @@
 #include "Exceptions.h"
 
+#define _WIN32_WINNT 0x0400
+
 #include <Windows.h>
 #include <DbgHelp.h>
 
@@ -11,14 +13,55 @@
 
 #include <string>
 
+
+
+
+#pragma region Exception Window
+class ExceptionWindow {
+public:
+	HWND hwnd_Handle;
+	RECT r_Rect;
+	Exceptions::Exception* e_DisplayingException;
+
+	inline ExceptionWindow() {
+		e_DisplayingException = nullptr;
+	}
+
+
+
+	void Create() {
+
+	}
+};
+#pragma endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Exceptions::Exception::Exception() noexcept
 {
 	Debug::Log("Exception thrown");
 	
 	this->message = new char[0];
 	cstr_FullMessage = new char[0];
-	//this->stackTrace = new StackTrace(); Its too buggy for now. Test it out later
+
+	//Note StackTrace does not have full functionality for now.
 	this->stackTrace = new StackTrace(1);
+
+	//A debugger is attached. What you could do is to display a Window detailing the exception.
+	if (IsDebuggerPresent() == TRUE) {
+		
+	}
 }
 
 Exceptions::Exception::Exception(const char* msg) noexcept

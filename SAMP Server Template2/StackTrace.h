@@ -15,9 +15,7 @@
 class StackTraceEntry {
 public:
 	DWORD64 dw_Address;
-	char* cstr_FunctionName;
-	int n_LineNumber;
-	int n_ParameterCount;
+	DebugMethodInfo dmi_Method;
 };
 class StackTrace {
 private:

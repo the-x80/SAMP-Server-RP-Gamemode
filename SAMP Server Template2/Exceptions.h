@@ -2,6 +2,7 @@
 #define EXCEPTIONS_H
 #include <stdexcept>
 #include <exception>
+#include "MethodInfo.h"
 
 class StackTrace;
 
@@ -13,7 +14,14 @@ namespace Exceptions {
 		/// </summary>
 		char* cstr_FullMessage;
 		char* message;
+
+		int n_SourceFileLine;
+
 		StackTrace* stackTrace;
+		/// <summary>
+		/// Describes the method that the exception was thrown in.
+		/// </summary>
+		DebugMethodInfo mi_Method;
 	public:
 		Exception() noexcept;
 		Exception(const char* msg) noexcept;
@@ -38,6 +46,10 @@ namespace Exceptions {
 
 
 	class IndexOutOfBoundsException : public Exception {
+
+	};
+
+	class DivisionByZeroException : public Exception {
 
 	};
 
