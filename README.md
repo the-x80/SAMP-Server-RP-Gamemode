@@ -18,6 +18,7 @@
 </p>
 
 **Planned features**(List not complete)
+
 -Inventory System-
   -Planned to be split into character inventory(the things the character can carry only on himself), backpack inventory, vehicle inventory.</p>
  -Economy system</i>
