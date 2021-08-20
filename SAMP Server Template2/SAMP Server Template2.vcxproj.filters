@@ -161,6 +161,9 @@
     <ClInclude Include="ModuleInfo.h">
       <Filter>Framework\Diagnostics\Info Objects</Filter>
     </ClInclude>
+    <ClInclude Include="SymbolHelper.h">
+      <Filter>Framework\Diagnostics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">

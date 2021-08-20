@@ -339,6 +339,7 @@
     <ClInclude Include="sampgdk.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackTrace.h" />
+    <ClInclude Include="SymbolHelper.h" />
     <ClInclude Include="Thread.h" />
     <ClInclude Include="TypeInfo.h" />
     <ClInclude Include="Vector3.h" />

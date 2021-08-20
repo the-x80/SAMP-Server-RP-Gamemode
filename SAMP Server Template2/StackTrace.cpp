@@ -110,7 +110,10 @@ void StackTrace::GenerateStackTrace(int n_Skip)
 			break;
 		}
 
-
+		//This code should be cleaned up a bit
+		//Since not all of the symbols are located on the local machine
+		//There will be a need to download windows symbols online.
+		//Most likely you will have to create a SymbolHelper class to manage all of this.
 		if (sf_StackFrame.AddrPC.Offset != 0) {
 			//Valid frame
 			SYMBOL_INFO* si_Info;

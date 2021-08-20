@@ -27,4 +27,9 @@ public:
 	~DebugMethodInfo();
 };
 
+
+namespace Exceptions {
+
+}
+
 #endif

@@ -63,6 +63,20 @@ DebugMethodInfo::DebugMethodInfo(long dw_Address, bool b_InitializeSymbols)
 		OutputDebugString(cstr_DebugMessage);
 #endif
 	}
+
+	if ((si_Info->Flags & SYMFLAG_FUNCTION) == 0) {
+#ifdef _DEBUG
+		sprintf(cstr_DebugMessage, "Selected address is not a function\n");
+		OutputDebugString(cstr_DebugMessage);
+#endif
+		free(si_Info);
+		if (b_InitializeSymbols) {
+			SymCleanup(GetCurrentProcess());
+		}
+		return;
+	}
+
+
 	this->cstr_MethodName = new char[si_Info->NameLen + 1];
 	strcpy(this->cstr_MethodName, si_Info->Name);
 #pragma endregion

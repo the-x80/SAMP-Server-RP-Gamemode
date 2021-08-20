@@ -1,6 +1,7 @@
 #ifndef DIAGNOSTICS_H
 #define DIAGNOSTICS_H
 
+#include "SymbolHelper.h"
 #include "TypeInfo.h"
 #include "MethodInfo.h"
 #include "StackTrace.h"
