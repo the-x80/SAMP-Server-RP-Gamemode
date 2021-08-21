@@ -301,6 +301,7 @@
     <ClCompile Include="SAMPExceptions.cpp" />
     <ClCompile Include="sampgdk.c" />
     <ClCompile Include="StackTrace.cpp" />
+    <ClCompile Include="SymbolHelper.cpp" />
     <ClCompile Include="Thread.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Vehicle.cpp" />

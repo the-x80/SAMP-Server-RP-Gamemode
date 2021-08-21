@@ -1,5 +1,6 @@
 #ifndef SYMBOL_HELPER_H
 #define SYMBOL_HELPER_H
+#include "Exceptions.h"
 
 namespace DebugSymbolHelper {
 	static bool b_IsInitialized;
@@ -17,7 +18,7 @@ namespace DebugSymbolHelper {
 
 
 	namespace Exceptions {
-		class InitializationException : public ::Exceptions::Exception {
+		class SymInitializationException : public ::Exceptions::Exception {
 		public:
 			int n_LastError;
 		};

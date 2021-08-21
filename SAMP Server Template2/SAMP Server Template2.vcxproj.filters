@@ -66,6 +66,9 @@
     <ClCompile Include="ModuleInfo.cpp">
       <Filter>Framework\Diagnostics\Info Objects</Filter>
     </ClCompile>
+    <ClCompile Include="SymbolHelper.cpp">
+      <Filter>Framework\Diagnostics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">
