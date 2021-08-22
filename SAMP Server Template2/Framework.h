@@ -17,5 +17,6 @@
 
 #include "Vector3.h"
 #include "Quaternion.h"
+#include "Dictionary.h"
 
 #include "Event System.h"

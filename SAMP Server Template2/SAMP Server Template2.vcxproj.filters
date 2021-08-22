@@ -173,6 +173,9 @@
     <ClInclude Include="Debugger.h">
       <Filter>Framework\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="Dictionary.h">
+      <Filter>Framework\Generics\Dictionary</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">
@@ -240,6 +243,9 @@
     </Filter>
     <Filter Include="Framework\Data Types\Int32">
       <UniqueIdentifier>{60c5ebf8-bb8a-436f-a075-e0f4547346a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Generics\Dictionary">
+      <UniqueIdentifier>{66fdf710-00b6-4604-8032-9b4acf95775b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -2,28 +2,18 @@
 #define EVENT_SYSTEM_H
 
 namespace EventSystem {
-	class Event {
+	namespace Events {
+		class BaseEventType {
+		public:
+
+			BaseEventType();
+		};
+	}
+
+	class Dispatcher {
 	public:
-		int n_ID;
-		char* cstr_Name;
-		int n_NameLen;
-
-		Event();
-		~Event();
-
-		void SetName(const char* cstr_name);
+		Dispatcher();
 	};
-
-
-
-	static Array<Event*> a_Events;
-
-
-
-	void RegisterEvent(Event* e_Event);
-	void UnregristerEvent(Event* e_Event);
-
-	Event* FindEventByName(const char* cstr_Name);
 }
 
 

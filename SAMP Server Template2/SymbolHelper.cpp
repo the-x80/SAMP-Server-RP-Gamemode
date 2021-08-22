@@ -71,3 +71,13 @@ DebugMethodInfo* DebugSymbolHelper::GetDebugMethodInfoFromAddress(DWORD64 dw_Add
 
 	return retVal;
 }
+
+bool DebugSymbolHelper::GetMethodNameFromAddress(DWORD64 dw_Address, char* cstr_Name)
+{
+	if (cstr_Name == nullptr) {
+		throw new ::Exceptions::ArgumentNullException();
+	}
+
+
+	return false;
+}

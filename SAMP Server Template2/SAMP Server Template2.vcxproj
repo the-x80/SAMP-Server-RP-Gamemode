@@ -319,6 +319,7 @@
     <ClInclude Include="Debugger.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Diagnostics.h" />
+    <ClInclude Include="Dictionary.h" />
     <ClInclude Include="Event System.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Framework.h" />

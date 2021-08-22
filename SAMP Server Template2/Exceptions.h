@@ -46,6 +46,10 @@ namespace Exceptions {
 		
 	};
 
+	class ArgumentNullException : public Exception {
+
+	};
+
 
 	class IndexOutOfBoundsException : public Exception {
 

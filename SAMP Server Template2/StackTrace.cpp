@@ -132,13 +132,13 @@ void StackTrace::GenerateStackTrace(int n_Skip)
 
 			StackTraceEntry sf_Entry;
 			sf_Entry.dw_Address = sf_StackFrame.AddrPC.Offset;
-			sf_Entry.dmi_Method = DebugMethodInfo(sf_Entry.dw_Address, false);
+			sf_Entry.dmi_Method = new DebugMethodInfo(sf_Entry.dw_Address, false);
 
 			this->a_StackWalkEntries.Add(sf_Entry);
 			
 #ifdef STACK_TRACE_DEBUG
 			char cstr_DebugMessage[1024];
-			wsprintf(cstr_DebugMessage, "sf_StackFrame.AddrPC.Offset = 0x%p\nSymbol name is %s\n", (void*)sf_Entry.dw_Address, sf_Entry.dmi_Method.cstr_MethodName);
+			wsprintf(cstr_DebugMessage, "sf_StackFrame.AddrPC.Offset = 0x%p\nSymbol name is %s\n", (void*)sf_Entry.dw_Address, sf_Entry.dmi_Method->cstr_MethodName);
 			OutputDebugString(cstr_DebugMessage);
 #endif
 			free(si_Info);

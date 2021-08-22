@@ -15,7 +15,7 @@
 class StackTraceEntry {
 public:
 	DWORD64 dw_Address;
-	DebugMethodInfo dmi_Method;
+	DebugMethodInfo* dmi_Method;
 };
 class StackTrace {
 private:

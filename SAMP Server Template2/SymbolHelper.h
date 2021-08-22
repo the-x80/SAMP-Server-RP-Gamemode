@@ -22,7 +22,7 @@ namespace DebugSymbolHelper {
 	/// <returns>A pointer to a DebugMethodInfo structure describing the function.</returns>
 	DebugMethodInfo* GetDebugMethodInfoFromAddress(DWORD64 dw_Address);
 
-
+	bool GetMethodNameFromAddress(DWORD64 dw_Address, char* cstr_Name);
 
 
 	namespace Exceptions {

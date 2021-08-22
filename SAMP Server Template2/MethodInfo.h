@@ -12,18 +12,19 @@ public:
 	char* cstr_MethodName;
 	int n_ParameterCount;
 	TypeInfo* a_ParameterTypes;
-	TypeInfo ti_ReturnType;
-	ModuleInfo m_Module;
+	TypeInfo* ti_ReturnType;
+	ModuleInfo* m_Module;
 
 	MethodInfo();
+	MethodInfo(long dw_Address, bool b_InitializeSymbols);
 	MethodInfo(SYMBOL_INFO* si_Info);
 	~MethodInfo();
 };
 class DebugMethodInfo : public MethodInfo {
 public:
 	DebugTypeInfo* a_ParameterTypes;
-	DebugTypeInfo ti_ReturnType;
-	DebugModuleInfo m_Module;
+	DebugTypeInfo* ti_ReturnType;
+	DebugModuleInfo* m_Module;
 
 	char* cstr_SourceFileDirectory;
 	char* cstr_SourceFileName;
