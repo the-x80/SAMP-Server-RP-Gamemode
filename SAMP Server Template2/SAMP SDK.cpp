@@ -17,6 +17,7 @@ PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 	return sampgdk::Supports() | SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES | SUPPORTS_PROCESS_TICK;
 }
 
+Debugging::Debugger* debugger;
 PLUGIN_EXPORT bool PLUGIN_CALL Load(void** ppData)
 {
 
@@ -31,13 +32,15 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void** ppData)
 	//Perform settings file operations
 	//Perform file structure sanity check
 
-
+	debugger = new Debugging::Debugger();
+	debugger->Start();
 	return sampgdk::Load(ppData);
 }
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
-
+	
 	sampgdk::Unload();
+	debugger->Stop(false);
 }
 
 AMX_NATIVE_INFO PluginNatives[] =

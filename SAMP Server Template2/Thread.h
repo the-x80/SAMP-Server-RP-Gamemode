@@ -34,6 +34,7 @@ public:
 	~Thread();
 
 	void Start();//Starts the thread
+	void Start(void* param);
 	void Abort();
 	bool Suspend();
 	bool Resume();

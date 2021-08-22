@@ -283,6 +283,7 @@
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="Delegate.cpp" />
     <ClCompile Include="Diagnostics.cpp" />
     <ClCompile Include="Event System.cpp" />
@@ -315,6 +316,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="Debugger.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Diagnostics.h" />
     <ClInclude Include="Event System.h" />

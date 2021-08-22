@@ -16,13 +16,14 @@ namespace EventSystem {
 
 
 
-	static Array<Event> a_Events;
+	static Array<Event*> a_Events;
 
 
 
-	void RegisterEvent(Event e_Event);
-	void UnregristerEvent(Event e_Event);
+	void RegisterEvent(Event* e_Event);
+	void UnregristerEvent(Event* e_Event);
 
+	Event* FindEventByName(const char* cstr_Name);
 }
 
 

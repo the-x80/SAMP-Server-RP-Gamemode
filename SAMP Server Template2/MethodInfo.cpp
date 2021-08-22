@@ -1,12 +1,36 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <string>
-#include <Windows.h>
-#include <DbgHelp.h>
 
 #pragma comment(lib, "Dbghelp.lib")
 
+#include "Exceptions.h"
 #include "MethodInfo.h"
+
+MethodInfo::MethodInfo()
+{
+	this->cstr_MethodName = nullptr;
+}
+
+MethodInfo::MethodInfo(SYMBOL_INFO* si_Info)
+{
+	try {
+		this->cstr_MethodName = new char[si_Info->NameLen + 1];
+	}
+	catch (std::bad_alloc e) {
+		throw new ::Exceptions::BadAllocationException();
+	}
+	memset(cstr_MethodName, 0, si_Info->NameLen + 1);
+	strcpy(cstr_MethodName, si_Info->Name);
+}
+
+MethodInfo::~MethodInfo()
+{
+	if (this->cstr_MethodName != nullptr) {
+		delete[] this->cstr_MethodName;
+		this->cstr_MethodName = nullptr;
+	}
+}
 
 DebugMethodInfo::DebugMethodInfo()
 {
@@ -92,6 +116,12 @@ DebugMethodInfo::DebugMethodInfo(long dw_Address, bool b_InitializeSymbols)
 	}
 }
 
+DebugMethodInfo::DebugMethodInfo(SYMBOL_INFO* si_Info) : MethodInfo::MethodInfo(si_Info)
+{
+}
+
 DebugMethodInfo::~DebugMethodInfo()
 {
 }
+
+

@@ -45,8 +45,25 @@ void Thread::Start()
 	this->h_Thread = CreateThread(NULL, 0, this->lp_StartRoutine, nullptr, CREATE_SUSPENDED, NULL);
 	if (this->h_Thread == NULL) {
 		Debug::Throw(new Exceptions::OutOfMemoryException());
+		return;
 	}
 
+	ResumeThread(this->h_Thread);
+	this->ts_State = ThreadState::Running;
+}
+
+void Thread::Start(void* param)
+{
+	if (this->b_IsAlive == true) {
+		Debug::Throw(new Exceptions::ThreadStateException());
+	}
+	this->h_Thread = CreateThread(NULL, 0, this->lp_StartRoutine, param, CREATE_SUSPENDED, NULL);
+	if (this->h_Thread == NULL) {
+		Debug::Throw(new Exceptions::OutOfMemoryException());
+		return;
+	}
+
+	ResumeThread(this->h_Thread);
 	this->ts_State = ThreadState::Running;
 }
 

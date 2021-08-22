@@ -2,7 +2,7 @@
 #define STACK_TRACE_H
 
 #ifdef _DEBUG
-#define STACK_TRACE_DEBUG
+//#define STACK_TRACE_DEBUG
 #endif
 
 #ifndef _WINDOWS_

@@ -21,7 +21,7 @@ StackTrace::StackTrace(int n_Skip)
 
 void StackTrace::GenerateStackTrace(int n_Skip)
 {
-#ifdef _DEBUG
+#ifdef STACK_TRACE_DEBUG
 	char cstr_DebugMessage[1024];
 	memset(cstr_DebugMessage, 0, 1024);
 	wsprintf(cstr_DebugMessage, "%s started.\n", __func__);

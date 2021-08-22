@@ -9,6 +9,8 @@ EventSystem::Event::Event()
 	this->n_ID = 0;
 	this->cstr_Name = new char[0];
 	this->n_NameLen = 0;
+
+	a_Events.Add(this);
 }
 
 EventSystem::Event::~Event()
@@ -26,12 +28,12 @@ void EventSystem::Event::SetName(const char* cstr_name)
 	this->n_NameLen = strlen(this->cstr_Name);
 }
 
-void EventSystem::RegisterEvent(Event e_Event)
+void EventSystem::RegisterEvent(Event* e_Event)
 {
 	EventSystem::a_Events.Add(e_Event);
 }
 
-void EventSystem::UnregristerEvent(Event e_Event)
+void EventSystem::UnregristerEvent(Event* e_Event)
 {
 	EventSystem::a_Events.Remove(e_Event);
 }

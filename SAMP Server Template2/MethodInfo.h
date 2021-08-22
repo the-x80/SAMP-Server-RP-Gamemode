@@ -1,6 +1,9 @@
 #ifndef METHOD_INFO_H
 #define METHOD_INFO_H
 
+#include <Windows.h>
+#include <DbgHelp.h>
+
 #include "ModuleInfo.h"
 #include "TypeInfo.h"
 
@@ -11,6 +14,10 @@ public:
 	TypeInfo* a_ParameterTypes;
 	TypeInfo ti_ReturnType;
 	ModuleInfo m_Module;
+
+	MethodInfo();
+	MethodInfo(SYMBOL_INFO* si_Info);
+	~MethodInfo();
 };
 class DebugMethodInfo : public MethodInfo {
 public:
@@ -24,6 +31,7 @@ public:
 
 	DebugMethodInfo();
 	DebugMethodInfo(long dw_Address, bool b_InitializeSymbols);
+	DebugMethodInfo(SYMBOL_INFO* si_Info);
 	~DebugMethodInfo();
 };
 

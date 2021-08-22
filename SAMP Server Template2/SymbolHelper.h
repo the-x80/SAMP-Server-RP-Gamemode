@@ -14,6 +14,14 @@ namespace DebugSymbolHelper {
 	/// </summary>
 	void Cleanup();
 
+	SYMBOL_INFO* GetSymInfoFromAddr(DWORD64 dw_Address);
+	/// <summary>
+	/// Retrieves a MethodInfo structure that describes the function at the given address.
+	/// </summary>
+	/// <param name="dw_Address">Address of the function</param>
+	/// <returns>A pointer to a DebugMethodInfo structure describing the function.</returns>
+	DebugMethodInfo* GetDebugMethodInfoFromAddress(DWORD64 dw_Address);
+
 
 
 

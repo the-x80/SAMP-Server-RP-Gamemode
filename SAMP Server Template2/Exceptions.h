@@ -22,6 +22,8 @@ namespace Exceptions {
 		/// Describes the method that the exception was thrown in.
 		/// </summary>
 		DebugMethodInfo mi_Method;
+
+		Exception* e_InnerException;
 	public:
 		Exception() noexcept;
 		Exception(const char* msg) noexcept;
@@ -40,7 +42,7 @@ namespace Exceptions {
 	class OutOfMemoryException : public Exception{
 
 	};
-	class BadAllocationException : public std::bad_alloc {
+	class BadAllocationException : public Exception {
 		
 	};
 

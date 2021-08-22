@@ -11,6 +11,8 @@
 #include "Stack.h"
 #include "Thread.h"
 
+#include "Debugger.h"
+
 #include "Int32.h"
 
 #include "Vector3.h"
