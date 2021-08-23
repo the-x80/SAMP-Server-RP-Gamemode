@@ -25,6 +25,7 @@ namespace SAMP_SDK {
 
 
 		template <class T> T* AddComponent();
+		bool RemoveComponent(Component* c);
 	};
 
 }

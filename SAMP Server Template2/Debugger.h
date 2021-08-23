@@ -6,7 +6,7 @@
 #endif
 
 #ifdef _DEBUG
-//#define DEBUGGER_DEBUG
+#define DEBUGGER_DEBUG
 #endif
 
 namespace Debugging {
@@ -15,10 +15,12 @@ namespace Debugging {
 		bool b_IsAttached;
 		DWORD dw_ProcessId;
 		Thread t_MainThread;
+		HANDLE h_Process;
 	public:
 
 		Debugger();//Attaches a debugger to this process.
 		Debugger(DWORD dw_ProcessId);//Attaches a debugger to another process.
+		~Debugger();
 
 		void Start();
 		void Stop(bool b_KillProcess);
@@ -26,6 +28,7 @@ namespace Debugging {
 		bool IsDebugged();
 
 		bool EnableDebugPrivileges();
+		bool SetDebugPrivilege(bool state);
 
 		//Used as a wrapper for the windows WaitForDebugEvent.
 		//Purely for scalability reasons. Might introduce new functionality into it.

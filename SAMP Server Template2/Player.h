@@ -6,7 +6,7 @@ namespace SAMP_SDK {
 
 	class Player : public GameObject {
 	private:
-		static Array<Player*> a_PlayerPool;
+		static Array<Player*> a_PlayerPool;//This might be replaced with a PlayerPool class
 	protected:
 		int n_ID;
 

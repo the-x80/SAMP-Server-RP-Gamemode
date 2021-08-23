@@ -78,7 +78,7 @@ public:
 		}
 		return b_Return;
 	}
-	inline bool Remove(int index) {
+	inline bool RemoveAt(int index) {
 		throw new Exceptions::NotImplementedException();
 		
 		if ((index >= this->length) || (index < 0)) {
@@ -96,7 +96,7 @@ public:
 		this->length -= 1;
 		this->size = this->length * sizeof(T);
 	}
-	inline bool RemoveFirts() {
+	inline bool RemoveFirst() {
 		int n_NewSize = (this->length - 1) * sizeof(T);
 		T* gen_Buffer = this->elements;
 		this->elements = new T[this->length - 1];

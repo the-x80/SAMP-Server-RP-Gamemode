@@ -72,6 +72,9 @@
     <ClCompile Include="Debugger.cpp">
       <Filter>Framework\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="String.cpp">
+      <Filter>Framework\Data Types\String</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">
@@ -176,6 +179,12 @@
     <ClInclude Include="Dictionary.h">
       <Filter>Framework\Generics\Dictionary</Filter>
     </ClInclude>
+    <ClInclude Include="GenericEventTypes.h">
+      <Filter>Framework\Event System\EventTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Framework\Data Types\String</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">
@@ -246,6 +255,12 @@
     </Filter>
     <Filter Include="Framework\Generics\Dictionary">
       <UniqueIdentifier>{66fdf710-00b6-4604-8032-9b4acf95775b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Event System\EventTypes">
+      <UniqueIdentifier>{1403db4b-c9da-4f41-b0bf-5842dbb04760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Data Types\String">
+      <UniqueIdentifier>{407c3445-2256-4384-a0b4-6bb06f69c07e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

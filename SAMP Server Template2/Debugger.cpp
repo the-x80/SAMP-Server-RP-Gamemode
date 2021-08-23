@@ -123,12 +123,19 @@ Debugging::Debugger::Debugger()
 	//throw new ::Exceptions::NotImplementedException();
 	this->dw_ProcessId = GetCurrentProcessId();
 	this->b_IsAttached = false;
+    this->h_Process = OpenProcess(PROCESS_ALL_ACCESS, FALSE, this->dw_ProcessId);
 }
 
 Debugging::Debugger::Debugger(DWORD dw_ProcessId)
 {
 	this->dw_ProcessId = dw_ProcessId;
 	this->b_IsAttached = false;
+    this->h_Process = OpenProcess(PROCESS_ALL_ACCESS, FALSE, this->dw_ProcessId);
+}
+
+Debugging::Debugger::~Debugger()
+{
+    CloseHandle(this->h_Process);
 }
 
 void Debugging::Debugger::Start()
@@ -138,8 +145,16 @@ void Debugging::Debugger::Start()
 	wsprintf(cstr_DebugMessage, "Starting debugger.\n");
 	Debug::Log(cstr_DebugMessage);
 #endif
+
+    if (IsDebuggerPresent() == TRUE) {
+#ifdef DEBUGGER_DEBUG
+        wsprintf(cstr_DebugMessage, "Debugger is already attached to this process.\n");
+        Debug::Log(cstr_DebugMessage);
+#endif
+        return;
+    }
 	
-    if (this->EnableDebugPrivileges() == FALSE) {
+    if (this->SetDebugPrivilege(true) == FALSE) {
 #ifdef DEBUGGER_DEBUG
         wsprintf(cstr_DebugMessage, "Unable to EnableDebugPriveleges.\n");
         Debug::Log(cstr_DebugMessage);
@@ -181,92 +196,83 @@ void Debugging::Debugger::Stop(bool b_KillProcess)
 
 bool Debugging::Debugger::IsDebugged()
 {
-    WCHAR wszFilePath[MAX_PATH], wszCmdLine[MAX_PATH];
-    STARTUPINFO si = { sizeof(si) };
-    PROCESS_INFORMATION pi;
-    HANDLE hDbgEvent;
-
-    hDbgEvent = CreateEventW(NULL, FALSE, FALSE, L"SelfDebugging");
-    if (!hDbgEvent)
-        return false;
-
-    if (!GetModuleFileNameW(NULL, wszFilePath, _countof(wszFilePath)))
-        return false;
-
-    swprintf_s(wszCmdLine, L"%s %d", wszFilePath, GetCurrentProcessId());
-    if (CreateProcessW(NULL, wszCmdLine, NULL, NULL, FALSE, 0, NULL, NULL, (LPSTARTUPINFOW)&si, &pi))
-    {
-        WaitForSingleObject(pi.hProcess, INFINITE);
-        CloseHandle(pi.hProcess);
-        CloseHandle(pi.hThread);
-
-        return WAIT_OBJECT_0 == WaitForSingleObject(hDbgEvent, 0);
-    }
-
-    return false;
+    return IsDebuggerPresent();
 }
 
 bool Debugging::Debugger::EnableDebugPrivileges()
 {
 #ifdef DEBUGGER_DEBUG
     char cstr_DebugMessage[1024];
-    wsprintf(cstr_DebugMessage, "Enabling debug privileges.\n");
+    wsprintf(cstr_DebugMessage, "%s called.\n", __func__);
     Debug::Log(cstr_DebugMessage);
 #endif
-    bool bResult = false;
-    HANDLE hToken = NULL;
-    DWORD ec = 0;
+    HANDLE pToken = NULL;
+    TOKEN_PRIVILEGES pTokenPrivileges;
+    LUID luid;
 
-    do
+    OpenProcessToken(this->h_Process, TOKEN_ALL_ACCESS, &pToken);
+
+    if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &luid)) { 
+#ifdef DEBUGGER_DEBUG
+        wsprintf(cstr_DebugMessage, "LoolupPrivilegeValue failed. GetLastError returned %d.\n", GetLastError());
+        Debug::Log(cstr_DebugMessage);
+#endif
+        return FALSE; 
+    }
+
+    pTokenPrivileges.PrivilegeCount = 1;
+    pTokenPrivileges.Privileges[0].Luid = luid;
+    pTokenPrivileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+
+    if (!AdjustTokenPrivileges(pToken, FALSE, &pTokenPrivileges, sizeof(TOKEN_PRIVILEGES), NULL, NULL)) { 
+#ifdef DEBUGGER_DEBUG
+        wsprintf(cstr_DebugMessage, "AdjustTokenPrivileges failed. GetLastError returned %d.\n", GetLastError());
+        Debug::Log(cstr_DebugMessage);
+#endif
+        return FALSE; 
+    }
+
+    if (GetLastError() == ERROR_NOT_ALL_ASSIGNED) { 
+#ifdef DEBUGGER_DEBUG
+        wsprintf(cstr_DebugMessage, "ERROR_NOT_ALL_ASSIGNED(%d)\n", GetLastError());
+        Debug::Log(cstr_DebugMessage);
+#endif
+        return FALSE; 
+    }
+
+    return TRUE;
+}
+
+bool Debugging::Debugger::SetDebugPrivilege(bool state)
+{
+    HANDLE hToken;
+    TOKEN_PRIVILEGES token_privileges;
+    DWORD dwSize;
+
+    ZeroMemory(&token_privileges, sizeof(token_privileges));
+    token_privileges.PrivilegeCount = 1;
+
+    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ALL_ACCESS, &hToken))
+        return FALSE;
+
+    if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &token_privileges.Privileges[0].Luid))
     {
-        if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hToken)) {
-#ifdef DEBUGGER_DEBUG
-            wsprintf(cstr_DebugMessage, "OpenProcessToken failed. GetLastError returned %d\n", GetLastError());
-            Debug::Log(cstr_DebugMessage);
-#endif
-            break;
-        }
-
-        TOKEN_PRIVILEGES tp;
-        tp.PrivilegeCount = 1;
-        if (!LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &tp.Privileges[0].Luid)) {
-#ifdef DEBUGGER_DEBUG
-            wsprintf(cstr_DebugMessage, "LookupPrivilegeValue failed. GetLastError returned %d\n", GetLastError());
-            Debug::Log(cstr_DebugMessage);
-#endif
-            break;
-        }
-
-        tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-        if (!AdjustTokenPrivileges(hToken, FALSE, &tp, sizeof(tp), NULL, NULL)) {
-#ifdef DEBUGGER_DEBUG
-            wsprintf(cstr_DebugMessage, "AdjustTokenPrivileges failed. GetLastError returned %d\n", GetLastError());
-            Debug::Log(cstr_DebugMessage);
-#endif
-            break;
-        }
-        switch (GetLastError()) {
-            case ERROR_SUCCESS:
-#ifdef DEBUGGER_DEBUG
-                wsprintf(cstr_DebugMessage, "AdjustTokenPrivileges assigned all of the privileges.\n", GetLastError());
-                Debug::Log(cstr_DebugMessage);
-#endif
-                break;
-            case ERROR_NOT_ALL_ASSIGNED:
-#ifdef DEBUGGER_DEBUG
-                wsprintf(cstr_DebugMessage, "AdjustTokenPrivileges did not assign all of the privileges.\n", GetLastError());
-                Debug::Log(cstr_DebugMessage);
-#endif
-                break;
-        }
-
-        bResult = true;
-    } while (0);
-
-    if (hToken)
         CloseHandle(hToken);
+        return FALSE;
+    }
 
-    return bResult;
+    if (state)
+        token_privileges.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+    else
+        token_privileges.Privileges[0].Attributes = SE_PRIVILEGE_REMOVED;
+
+    if (!AdjustTokenPrivileges(hToken, FALSE, &token_privileges, 0, NULL, &dwSize))
+    {
+        CloseHandle(hToken);
+        return FALSE;
+    }
+
+    return CloseHandle(hToken);
 }
 
 bool Debugging::Debugger::WaitForDebugEvent(LPDEBUG_EVENT Event, int dw_Milliseconds)

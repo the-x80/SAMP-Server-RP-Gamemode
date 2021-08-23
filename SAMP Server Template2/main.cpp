@@ -24,16 +24,25 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnGameModeInit()
 
 	//Load the map
 	//Not implemented yet
+	
 
 	//When map generation finishes create the vehicles
 	
 	//When vehicle creation finishes create actors
 	//Not implemented yet.
 
+	String testString = String();
+	testString = testString + "This is a test";
 
+	testString = testString + " and this is another test.";
+
+	testString = testString + 5;
+	testString = testString + 5.5f;
+	Debug::Log(testString);
 
 	//Initializing the worker threads
-	throw new Exceptions::Exception();
+	//throw new Exceptions::Exception();
+	Debug::Log("Done");
 	return true;
 }
 PLUGIN_EXPORT bool PLUGIN_CALL OnGameModeExit() {

@@ -9,7 +9,24 @@ namespace EventSystem {
 			BaseEventType();
 		};
 	}
+}
 
+
+#include "GenericEventTypes.h"
+
+
+
+
+
+
+
+
+namespace EventSystem{
+	class EventListener {
+	public:
+
+
+	};
 	class Dispatcher {
 	public:
 		Dispatcher();

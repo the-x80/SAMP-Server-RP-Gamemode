@@ -49,6 +49,9 @@ void Debug::Release()
 
 void Debug::Log(const char* msg)
 {
+	if (msg == nullptr) {
+		throw new Exceptions::ArgumentNullException();
+	}
 	//Data required to write to console window
 	HANDLE h_StdOutput = INVALID_HANDLE_VALUE;
 	int n_NumberOfCharsWritten = 0;

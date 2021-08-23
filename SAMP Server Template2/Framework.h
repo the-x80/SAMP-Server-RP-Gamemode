@@ -14,6 +14,7 @@
 #include "Debugger.h"
 
 #include "Int32.h"
+#include "String.h"
 
 #include "Vector3.h"
 #include "Quaternion.h"
