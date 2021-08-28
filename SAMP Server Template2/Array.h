@@ -1,6 +1,13 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
+//Developer notes
+//	-Switch from using new to using malloc. Slight speed increase.
+//	-The Clear function needs a better implementation. See inside the function block for more info.
+//Changelog
+//28.8::
+//	-Added Clear function to the Array class.
+
 template <typename T> class Array {
 private:
 	T* elements;
@@ -104,6 +111,29 @@ public:
 		delete[] gen_Buffer;
 		this->length -= 1;
 		this->size = this->length * sizeof(T);
+	}
+
+	/// <summary>
+	/// Clears the contents of the array.
+	/// </summary>
+	/// <returns>False if failed true otherwise.</returns>
+	inline bool Clear() {
+		delete[] this->elements;
+		this->size = 0;
+		this->length = 0;
+		this->elements = nullptr;
+
+		//This is where it becomes dangerous.
+		//The allocation could fail and therefore
+		//The elements will be nullptr wich the class does not expect.
+		//Design around this. Either by adding if nullptr checks or by avoiding the exception
+		//Thrown when new is called.
+		try {
+			this->elements = new T[0];
+		}
+		catch (std::bad_alloc e) {
+
+		}
 	}
 
 	int Length() {
