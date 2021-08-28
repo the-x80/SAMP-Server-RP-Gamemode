@@ -22,6 +22,8 @@ namespace SAMP_SDK {
 		/// References the owner of this component.
 		/// </summary>
 		GameObject* go_OwnedBy;
+
+		EventSystem::EventListener* eventListener;
 	public:
 
 
