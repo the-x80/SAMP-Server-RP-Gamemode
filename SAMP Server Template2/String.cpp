@@ -7,62 +7,78 @@
 
 String::String()
 {
+	DEBUG_START(1024);
+	DEBUG_MESSAGE("this -> 0x%p\n", (void*)this);
 	cstr_Text = new char[1];
+	DEBUG_MESSAGE("new this->cstr_Text @ 0x%p\n", (void*)this->cstr_Text);
 	memset(this->cstr_Text, 0, 1 * sizeof(char));
 	this->n_Length = 0;
 	this->n_Size = 1;
+	DEBUG_END();
 }
 
 String::String(char* cstr_text)
 {
+	DEBUG_START(1024);
+	DEBUG_MESSAGE("this -> 0x%p\n", (void*)this);
 	if (cstr_text == nullptr) {
 		throw new Exceptions::ArgumentNullException();
 	}
 	this->cstr_Text = new char[strlen(cstr_text) + 1];
+	DEBUG_MESSAGE("new this->cstr_Text @ 0x%p\n", (void*)this->cstr_Text);
 	memset(this->cstr_Text, 0, (strlen(cstr_text) + 1) * sizeof(char));
 	strcpy(this->cstr_Text, cstr_text);
 	this->n_Length = strlen(cstr_text);
 	this->n_Size = (this->n_Length + 1) * sizeof(char);
+	DEBUG_END();
 }
 
 String::~String()
 {
+	DEBUG_START(1024);
+	DEBUG_MESSAGE("this -> 0x%p", (void*)this);
 	if (this->cstr_Text != nullptr) {
+		DEBUG_MESSAGE("delete[] this->cstr_Text @ 0x%p\n", (void*)this->cstr_Text);
 		delete[] this->cstr_Text;
 	}
 	this->cstr_Text = nullptr;
 
 	this->n_Length = 0;
 	this->n_Size = 0;
+	DEBUG_END();
 }
 
 
-/*
+
 String& String::operator=(String other)
 {
 	// TODO: String& String::operator=::Optimize it a bit.
-	int n_ResultLength = 64;
+	DEBUG_START(1024);
+
+	DEBUG_MESSAGE("%s = %s\n", this->cstr_Text, other);
+	int n_ResultLength = strlen(other.cstr_Text);
+	DEBUG_MESSAGE("n_ResultLength = %d\n", n_ResultLength);
 	char* cstr_ResultText = nullptr;
 	try {
 		cstr_ResultText = new char[n_ResultLength];
-		memset(cstr_ResultText, 0, n_ResultLength);
-		sprintf(cstr_ResultText, "%s", other.cstr_Text);
-		delete[] this->cstr_Text;
-		this->cstr_Text = new char[n_ResultLength];
-		memcpy(this->cstr_Text, cstr_ResultText, n_ResultLength);
-		delete[] cstr_ResultText;
+		
 	}
 	catch(std::bad_alloc e){
 	}
 	catch (std::exception e) {
 
 	}
-	if (cstr_ResultText == nullptr) {
-	}
-	
+
+	memset(cstr_ResultText, 0, n_ResultLength);
+	sprintf(cstr_ResultText, "%s", other.cstr_Text);
+	delete[] this->cstr_Text;
+	this->cstr_Text = new char[n_ResultLength];
+	memcpy(this->cstr_Text, cstr_ResultText, n_ResultLength);
+	delete[] cstr_ResultText;
+	DEBUG_END();
 	return *this;
 }
-
+/*
 String& String::operator=(short other)
 {
 	int n_ResultLength = (64 + 1) * sizeof(char);
@@ -301,18 +317,28 @@ String& String::operator+(char* other)
 }
 String& String::operator+(const char* other)
 {
+	DEBUG_START(1024);
 	if (other == nullptr) {
 		throw new Exceptions::NullPointerException();
 	}
+	DEBUG_MESSAGE("%s + %s\n", this->cstr_Text, other);
 	int n_ResultLength = (strlen(this->cstr_Text) + strlen(other) + 1) * sizeof(char);
+	DEBUG_MESSAGE("n_ResultLength = %d\n", n_ResultLength);
 	char* cstr_ResultText = new char[n_ResultLength];
 	memset(cstr_ResultText, 0, n_ResultLength);
+	DEBUG_MESSAGE("memset(cstr_ResultText, 0, n_ResultLength); -> cstr_ResultText = %s\n", cstr_ResultText);
 	sprintf(cstr_ResultText, "%s%s", this->cstr_Text, other);
-	delete[] this->cstr_Text;
-	this->cstr_Text = new char[n_ResultLength];
-	memcpy(this->cstr_Text, cstr_ResultText, n_ResultLength);
+	DEBUG_MESSAGE("sprintf() -> cstr_ResultText = %s\n", cstr_ResultText);
+
+	DEBUG_MESSAGE("Creating retVal string object.\n");
+	String retVal=String(cstr_ResultText);
+	DEBUG_MESSAGE("Created retVal string object.\n");
+
+
+	DEBUG_MESSAGE("delete[] cstr_ResultText; ->  0x%p\n", (void*)cstr_ResultText);
 	delete[] cstr_ResultText;
-	return *this;
+	DEBUG_END();
+	return retVal;
 }
 
 String& String::operator+(unsigned short other)
