@@ -6,6 +6,7 @@
 #include "Debug.h"
 #include "Array.h"
 #include "Delegate.h"
+#include "Function.h"
 #include "Diagnostics.h"
 
 #include "Stack.h"

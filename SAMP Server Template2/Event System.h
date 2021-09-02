@@ -1,6 +1,19 @@
 #ifndef EVENT_SYSTEM_H
 #define EVENT_SYSTEM_H
+
+#ifndef _FUNCTIONAL_
 #include <functional>
+#endif
+
+//About
+//	Basic Event system used to call relevant functions inside the Component objects of GameObjects
+//	
+//Developer notes
+//
+//Changelog
+//	28.8.2021
+//		-Started development
+//		-Added a TriggerEvent method in the Dispatcher object
 
 namespace EventSystem{
 	class Event {
@@ -19,15 +32,18 @@ namespace EventSystem{
 	};
 	class Dispatcher {
 	private:
-		Array<EventListener> listeners;
+		Array<EventListener*> listeners;
 	public:
 		Dispatcher();
 
-		void RegisterListener(EventListener l);
-		void UnregisterListener(EventListener l);
+		void RegisterListener(EventListener* l);
+		void UnregisterListener(EventListener* l);
+
+		void TriggerEvent(Event e);
 	};
 
 	static Array<Dispatcher*> a_DispatcherPool;
+	static const Dispatcher* main_Dispatcher = a_DispatcherPool[0];
 
 	void Create();
 	void Release();

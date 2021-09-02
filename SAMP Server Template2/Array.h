@@ -116,8 +116,7 @@ public:
 	/// <summary>
 	/// Clears the contents of the array.
 	/// </summary>
-	/// <returns>False if failed true otherwise.</returns>
-	inline bool Clear() {
+	inline void Clear() {
 		delete[] this->elements;
 		this->size = 0;
 		this->length = 0;

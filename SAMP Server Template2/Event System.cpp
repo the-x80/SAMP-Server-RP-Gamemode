@@ -10,22 +10,41 @@
 
 EventSystem::Dispatcher::Dispatcher()
 {
-	this->listeners = Array<EventListener>();
+	this->listeners = Array<EventListener*>();
 }
 
-void EventSystem::Dispatcher::RegisterListener(EventListener l)
+void EventSystem::Dispatcher::RegisterListener(EventListener* l)
 {
 	this->listeners.Add(l);
 }
 
-void EventSystem::Dispatcher::UnregisterListener(EventListener l)
+void EventSystem::Dispatcher::UnregisterListener(EventListener* l)
 {
 	this->listeners.Remove(l);
+}
+
+void EventSystem::Dispatcher::TriggerEvent(Event e)
+{
+	for (int i = 0; i < listeners.Length(); i++) {
+		EventListener* currentListener = listeners[i];
+
+		try {
+			//Call the events function
+		}
+		catch (std::bad_function_call e) {
+
+		}
+		catch (Exceptions::Exception* e) {
+			//Generic exception block for unknown exceptions
+
+		}
+	}
 }
 
 void EventSystem::Create()
 {
 	EventSystem::a_DispatcherPool = Array<EventSystem::Dispatcher*>();
+	EventSystem::a_DispatcherPool[0] = new EventSystem::Dispatcher();
 }
 
 void EventSystem::Release()

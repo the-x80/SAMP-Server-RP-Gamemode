@@ -75,6 +75,9 @@
     <ClCompile Include="String.cpp">
       <Filter>Framework\Data Types\String</Filter>
     </ClCompile>
+    <ClCompile Include="Function.cpp">
+      <Filter>Framework\Generics\Function</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">
@@ -185,6 +188,9 @@
     <ClInclude Include="String.h">
       <Filter>Framework\Data Types\String</Filter>
     </ClInclude>
+    <ClInclude Include="Function.h">
+      <Filter>Framework\Generics\Function</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">
@@ -261,6 +267,9 @@
     </Filter>
     <Filter Include="Framework\Data Types\String">
       <UniqueIdentifier>{407c3445-2256-4384-a0b4-6bb06f69c07e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Generics\Function">
+      <UniqueIdentifier>{3e7dad4b-3428-4fce-b4c0-1ad49035c82d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -288,6 +288,7 @@
     <ClCompile Include="Diagnostics.cpp" />
     <ClCompile Include="Event System.cpp" />
     <ClCompile Include="Exceptions.cpp" />
+    <ClCompile Include="Function.cpp" />
     <ClCompile Include="Gamemode.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Int32.cpp" />
@@ -324,6 +325,7 @@
     <ClInclude Include="Event System.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Framework.h" />
+    <ClInclude Include="Function.h" />
     <ClInclude Include="Gamemode.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GenericEventTypes.h" />
