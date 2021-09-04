@@ -78,6 +78,9 @@
     <ClCompile Include="Function.cpp">
       <Filter>Framework\Generics\Function</Filter>
     </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Framework\Console</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">

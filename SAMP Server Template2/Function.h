@@ -25,27 +25,60 @@ namespace Exceptions {
 	};
 }
 
-template <typename Return, typename... Arguments> class Function {
-	Return(*fn_Pointer)(Arguments...);
+template <typename ReturnType, typename... Arguments> class Function {
+	
+public:
+	enum class CallingConvention {
+		cdecl_,
+		clrcall,
+		stdcall
+	};
+	typedef ReturnType(__cdecl FunctionPointerCDECL)(Arguments...);
+	typedef ReturnType (__stdcall FunctionPointerSTDCALL)(Arguments...);
+	ReturnType (*fn_Pointer)(Arguments...);
+	CallingConvention callingConvention;
 
 	inline Function() {
 		this->fn_Pointer = nullptr;
 	}
-	inline Function(Return(*fn_ptr)(Arguments...)) {
-		this->fn_Pointer = fn_ptr;
+	inline Function(FunctionPointerCDECL* func_ptr) {
+		this->fn_Pointer = (FunctionPointerCDECL*)func_ptr;
+		this->callingConvention = CallingConvention::cdecl_;
+	}
+	inline Function(FunctionPointerSTDCALL* func_ptr) {
+		this->fn_Pointer = (FunctionPointerCDECL*)func_ptr;
+		this->callingConvention = CallingConvention::stdcall;
 	}
 	inline ~Function() {
-		this->fn_Pointer = nullptr;
+		
 	}
 
-	inline Return Invoke(Arguments... args) {
-		if (this->fn_Pointer == nullptr) {
-			throw new Exceptions::NullPointerException();
-		}
-
-		Return retVal;
+	inline ReturnType Invoke(Arguments... args) {
+		
+		ReturnType retVal = 0;
 		try {
-			retVal = this->fn_Pointer(Arguments);
+			switch (callingConvention) {
+			case CallingConvention::cdecl_:
+				__asm {
+
+				}
+				break;
+			case CallingConvention::clrcall:
+				__asm {
+
+				}
+				break;
+			case CallingConvention::stdcall:
+				//retVal = (FunctionPointerSTDCALL*)this->fn_Pointer(args...);
+				//Since calling functions normally does not work
+				//Call them in asssembler
+				__asm {
+
+				}
+				break;
+
+			}
+			
 		}
 		catch (Exceptions::Exception* e) {
 

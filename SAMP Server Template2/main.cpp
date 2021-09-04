@@ -31,20 +31,12 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnGameModeInit()
 	//When vehicle creation finishes create actors
 	//Not implemented yet.
 
-	String testString = String();
-	testString = testString + "This is a test";
-
-	testString = testString + " and this is another test.";
-
-	testString = testString + 5;
-	testString = testString + 5.5f;
-	Debug::Log(testString);
-
 	//Initializing the worker threads
 	//throw new Exceptions::Exception();
 	Debug::Log("Done");
 	return true;
 }
+
 PLUGIN_EXPORT bool PLUGIN_CALL OnGameModeExit() {
 	return true;
 }
@@ -64,6 +56,10 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerConnect(int playerid)
 	}
 
 
+	//ply_Current->AddComponent<SAMP_SDK::Component>();
+
+
+
 	return true;
 }
 PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerDisconnect(int playerid, int reason)
@@ -74,6 +70,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerDisconnect(int playerid, int reason)
 
 PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerSpawn(int playerid)
 {
+	Debug::Log(__func__);
 	return true;
 }
 

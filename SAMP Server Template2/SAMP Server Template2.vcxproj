@@ -282,6 +282,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="Delegate.cpp" />

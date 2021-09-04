@@ -1,4 +1,13 @@
 #include "Framework.h"
+
+#ifndef PLAYER_H
+#include "Player.h"
+#endif
+
+#ifndef VEHICLE_H
+#include "Vehicle.h"
+#endif
+
 #include "GameObject.h"
 #include "Component.h"
 
@@ -16,4 +25,76 @@ void SAMP_SDK::Component::SetName(char* name)
 void SAMP_SDK::Component::RegisterCallbacks()
 {
     return;
+}
+
+void SAMP_SDK::Component::OnPlayerConnect(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerDisconnect(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerSpawn(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerDeath(Player* player, Player* killer, int reason)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerEnterVehicle(Player* player, Vehicle* vehicle, bool is_Passanger)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerExitVehicle(Player* player, Vehicle* vehicle)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerStateChanged(Player* player, int newstate, int oldstate)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerEnterCheckpoint(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerLeaveCheckpoint(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerEnterRaceCheckpoint(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerLeaveRaceCheckpoint(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerClickMap(Player* player, Vector3 position)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerRequestSpawn(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerObjectMoved(Player* player, int objectid)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerPickupPickup(Player* player, int pickupid)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerUpdate(Player* player)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerText(Player* player, const char* text)
+{
+}
+
+void SAMP_SDK::Component::OnPlayerCommandText(Player* player, const char* command)
+{
 }

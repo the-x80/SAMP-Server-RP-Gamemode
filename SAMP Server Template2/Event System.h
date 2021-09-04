@@ -43,7 +43,7 @@ namespace EventSystem{
 	};
 
 	static Array<Dispatcher*> a_DispatcherPool;
-	static const Dispatcher* main_Dispatcher = a_DispatcherPool[0];
+	static const Dispatcher* main_Dispatcher;// = a_DispatcherPool[0];
 
 	void Create();
 	void Release();

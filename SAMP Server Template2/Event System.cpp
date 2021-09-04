@@ -44,7 +44,7 @@ void EventSystem::Dispatcher::TriggerEvent(Event e)
 void EventSystem::Create()
 {
 	EventSystem::a_DispatcherPool = Array<EventSystem::Dispatcher*>();
-	EventSystem::a_DispatcherPool[0] = new EventSystem::Dispatcher();
+	EventSystem::a_DispatcherPool.Add(new EventSystem::Dispatcher());
 }
 
 void EventSystem::Release()
