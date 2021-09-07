@@ -1,6 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#ifndef GAME_OBJECT_H
+#include "GameObject.h"
+#endif
+
 namespace SAMP_SDK {
 	class Vehicle;
 

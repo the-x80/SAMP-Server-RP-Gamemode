@@ -1,14 +1,5 @@
 #include "Framework.h"
-
-#ifndef PLAYER_H
-#include "Player.h"
-#endif
-
-#ifndef VEHICLE_H
-#include "Vehicle.h"
-#endif
-
-#include "GameObject.h"
+#include "SAMP SDK.h"
 #include "Component.h"
 
 char* SAMP_SDK::Component::GetName()

@@ -1,10 +1,10 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-
-
 namespace SAMP_SDK {
 	class GameObject;
+	class Player;
+	class Vehicle;
 
 	//This is the base class of all components.
 	//It is used to extend the functionality of the GameObject class and its derrivatives

@@ -13,14 +13,6 @@ namespace SAMP_SDK {
 	private:
 	protected:
 		Array<Component*> a_c_OwnedComponents;
-
-#pragma region Callback pointers
-		Array<Delegate*> a_del_OnStart;
-		Array<Delegate*> a_del_OnEnable;
-		Array<Delegate*> a_del_OnDisable;
-		Array<Delegate*> a_del_OnTick;
-#pragma endregion
-
 	public:
 		GameObject();
 

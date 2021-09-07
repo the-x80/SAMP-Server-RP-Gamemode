@@ -10,6 +10,8 @@
 
 
 namespace SAMP_SDK {
+	class GameObject;
+
 	class Vehicle : public GameObject {
 	private:
 		static Array<Vehicle*> a_VehiclePool;
