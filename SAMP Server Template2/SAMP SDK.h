@@ -8,8 +8,10 @@
 
 #include "Gamemode.h"
 
-namespace SAMP_SDK {
+#include "SAMP IO.h"
 
+namespace SAMP_SDK {
+	
 	
 
 	

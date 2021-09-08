@@ -338,6 +338,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SAMP IO.h" />
     <ClInclude Include="SAMP SDK.h" />
     <ClInclude Include="SAMP SDK\amx\amx.h" />
     <ClInclude Include="SAMP SDK\amx\getch.h" />

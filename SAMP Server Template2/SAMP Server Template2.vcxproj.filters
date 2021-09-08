@@ -194,6 +194,9 @@
     <ClInclude Include="Function.h">
       <Filter>Framework\Generics\Function</Filter>
     </ClInclude>
+    <ClInclude Include="SAMP IO.h">
+      <Filter>SAMP SDK Wrapper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">
