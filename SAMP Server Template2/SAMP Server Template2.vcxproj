@@ -299,6 +299,7 @@
     <ClCompile Include="ModuleInfo.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="SAMP IO.cpp" />
     <ClCompile Include="SAMP SDK.cpp" />
     <ClCompile Include="SAMP SDK\amxplugin.cpp" />
     <ClCompile Include="SAMPExceptions.cpp" />

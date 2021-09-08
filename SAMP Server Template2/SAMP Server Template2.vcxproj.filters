@@ -81,6 +81,9 @@
     <ClCompile Include="Console.cpp">
       <Filter>Framework\Console</Filter>
     </ClCompile>
+    <ClCompile Include="SAMP IO.cpp">
+      <Filter>SAMP SDK Wrapper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">

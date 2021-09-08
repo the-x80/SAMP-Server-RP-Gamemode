@@ -25,6 +25,8 @@ namespace SAMP_SDK {
 		class OutOfBoundsPlayerID : InvalidPlayerID {
 
 		};
+
+		
 	}
 }
 

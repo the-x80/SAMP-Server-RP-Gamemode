@@ -59,6 +59,9 @@ namespace Exceptions {
 
 	};
 
+	class IOException : public Exception {
+
+	};
 
 	class NotImplementedException : Exception {
 
