@@ -34,12 +34,15 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void** ppData)
 
 	debugger = new Debugging::Debugger();
 	debugger->Start();
+
+	SAMP_SDK::IO::Initialize();
 	return sampgdk::Load(ppData);
 }
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
 	
 	sampgdk::Unload();
+	SAMP_SDK::IO::Close();
 	debugger->Stop(false);
 }
 

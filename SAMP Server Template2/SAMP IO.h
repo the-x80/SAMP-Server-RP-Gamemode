@@ -8,8 +8,16 @@
 
 namespace SAMP_SDK {
 	namespace IO {
-		const char* cstr_SanAndreasDirectory;//The root directory for San Andreas
+		static char* cstr_SanAndreasDirectory = nullptr;//The root directory for San Andreas
 		
+		/// <summary>
+		/// Initializes the San Andreas IO System
+		/// </summary>
+		void Initialize();
+		/// <summary>
+		/// Frees the memory from the initialization
+		/// </summary>
+		void Close();
 
 		/// <summary>
 		/// Looks for the San Andreas directory on the system.

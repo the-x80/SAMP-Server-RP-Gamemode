@@ -84,6 +84,9 @@
     <ClCompile Include="SAMP IO.cpp">
       <Filter>SAMP SDK Wrapper</Filter>
     </ClCompile>
+    <ClCompile Include="IO.cpp">
+      <Filter>Framework\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SAMP SDK\plugin.h">
@@ -200,6 +203,9 @@
     <ClInclude Include="SAMP IO.h">
       <Filter>SAMP SDK Wrapper</Filter>
     </ClInclude>
+    <ClInclude Include="IO.h">
+      <Filter>Framework\IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">
@@ -279,6 +285,9 @@
     </Filter>
     <Filter Include="Framework\Generics\Function">
       <UniqueIdentifier>{3e7dad4b-3428-4fce-b4c0-1ad49035c82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\IO">
+      <UniqueIdentifier>{b60d642a-8617-4d12-85bc-3dfe1f81feea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

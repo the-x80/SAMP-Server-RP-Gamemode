@@ -293,6 +293,7 @@
     <ClCompile Include="Gamemode.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Int32.cpp" />
+    <ClCompile Include="IO.cpp" />
     <ClCompile Include="JSONDocument.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MethodInfo.cpp" />
@@ -332,6 +333,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GenericEventTypes.h" />
     <ClInclude Include="Int32.h" />
+    <ClInclude Include="IO.h" />
     <ClInclude Include="JSONDocument.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MethodInfo.h" />
