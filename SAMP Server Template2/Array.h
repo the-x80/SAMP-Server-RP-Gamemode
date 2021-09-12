@@ -75,7 +75,7 @@ public:
 		T* gen_Buffer = elements;//Copy the current contents into the buffer
 		elements = new T[length - 1];//Create a new memory location with a smaller size.
 		int n_Index = 0;
-		for (int i = 0; i < length; i++) {
+		for (unsigned long i = 0; i < length; i++) {
 			if (&gen_Buffer[i] == &gen_Element) {
 				b_Return = true;
 				continue;

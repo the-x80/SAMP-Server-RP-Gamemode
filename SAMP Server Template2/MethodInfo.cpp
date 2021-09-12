@@ -16,7 +16,7 @@ MethodInfo::MethodInfo()
 	this->m_Module = nullptr;
 }
 
-MethodInfo::MethodInfo(long dw_Address, bool b_InitializeSymbols)
+MethodInfo::MethodInfo(DWORD64 dw_Address, bool b_InitializeSymbols)
 {
 #ifdef _DEBUG
 	char cstr_DebugMessage[1024];
@@ -67,7 +67,7 @@ MethodInfo::MethodInfo(long dw_Address, bool b_InitializeSymbols)
 	bool b_SymFromAddeResult = SymFromAddr(h_Process, dw_Address, &dw_Displacement, si_Info);
 	if (b_SymFromAddeResult == FALSE) {
 #ifdef _DEBUG
-		sprintf(cstr_DebugMessage, "Retrieving symbol from address 0x%p failed. GetLastError returned %d\n", dw_Address, GetLastError());
+		sprintf(cstr_DebugMessage, "Retrieving symbol from address 0x%p failed. GetLastError returned %d\n", (void*)dw_Address, GetLastError());
 		OutputDebugString(cstr_DebugMessage);
 #endif
 		switch (GetLastError()) {
@@ -154,7 +154,7 @@ DebugMethodInfo::DebugMethodInfo()
 	this->n_SourceFileLineNumber = 0;
 }
 
-DebugMethodInfo::DebugMethodInfo(long dw_Address, bool b_InitializeSymbols) :
+DebugMethodInfo::DebugMethodInfo(DWORD64 dw_Address, bool b_InitializeSymbols) :
 	MethodInfo::MethodInfo(dw_Address, b_InitializeSymbols)
 {
 	this->a_ParameterTypes = nullptr;

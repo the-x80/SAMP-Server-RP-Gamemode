@@ -191,6 +191,7 @@
       <SubSystem>Windows</SubSystem>
       <ModuleDefinitionFile>Dll1.def</ModuleDefinitionFile>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalOptions>/IGNORE:4217 %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <Xdcmake>
       <SuppressStartupBanner>false</SuppressStartupBanner>

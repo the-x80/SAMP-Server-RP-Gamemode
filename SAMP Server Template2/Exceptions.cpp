@@ -1,4 +1,7 @@
 #include "Exceptions.h"
+#ifdef _WIN32_WINNT
+#undef _WIN32_WINNT
+#endif
 
 #define _WIN32_WINNT 0x0400
 
@@ -24,6 +27,8 @@ public:
 	Exceptions::Exception* e_DisplayingException;
 
 	inline ExceptionWindow() {
+		hwnd_Handle = (HWND)INVALID_HANDLE_VALUE;
+		r_Rect = RECT();
 		e_DisplayingException = nullptr;
 	}
 
@@ -53,7 +58,13 @@ Exceptions::Exception::Exception() noexcept
 	Debug::Log("Exception thrown");
 	
 	this->message = new char[0];
-	cstr_FullMessage = new char[0];
+	this->cstr_FullMessage = new char[0];
+
+	this->e_InnerException = nullptr;
+
+	this->mi_Method = DebugMethodInfo();
+
+	this->n_SourceFileLine = 0;
 
 	//Note StackTrace does not have full functionality for now.
 	this->stackTrace = new StackTrace(1);
@@ -71,15 +82,21 @@ Exceptions::Exception::Exception(const char* msg) noexcept
 	memcpy_s(this->message, n_MessageLength+1, '\0', n_MessageLength+1);
 	strcpy_s(this->message, n_MessageLength, msg);
 
-	cstr_FullMessage = new char[0];
+	this->cstr_FullMessage = new char[0];
 	this->stackTrace = new StackTrace(1);
+
+	this->e_InnerException = nullptr;
+
+	this->mi_Method = DebugMethodInfo();
+
+	this->n_SourceFileLine = 0;
 }
 
 Exceptions::Exception::~Exception()
 {
 	delete[] this->message;
 	delete[] this->cstr_FullMessage;
-	//delete this->stackTrace;
+	delete this->stackTrace;
 }
 
 char* Exceptions::Exception::ToString()

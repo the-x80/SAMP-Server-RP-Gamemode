@@ -16,7 +16,7 @@ public:
 	ModuleInfo* m_Module;
 
 	MethodInfo();
-	MethodInfo(long dw_Address, bool b_InitializeSymbols);
+	MethodInfo(DWORD64 dw_Address, bool b_InitializeSymbols);
 	MethodInfo(SYMBOL_INFO* si_Info);
 	~MethodInfo();
 };
@@ -31,7 +31,7 @@ public:
 	int n_SourceFileLineNumber;
 
 	DebugMethodInfo();
-	DebugMethodInfo(long dw_Address, bool b_InitializeSymbols);
+	DebugMethodInfo(DWORD64 dw_Address, bool b_InitializeSymbols);
 	DebugMethodInfo(SYMBOL_INFO* si_Info);
 	~DebugMethodInfo();
 };

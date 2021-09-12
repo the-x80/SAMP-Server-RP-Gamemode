@@ -36,7 +36,7 @@ float Vector3::Dot(Vector3 v1, Vector3 v2)
 float Vector3::Distance(Vector3 v1, Vector3 v2)
 {
 	float v1powx = (v2.x*v2.x);
-	return (float)sqrt( pow(v2.x-v1.x, 2) + pow(v2.y - v1.y, 2) + pow(v2.z - v1.z, 2));
+	return (float)sqrt( pow((double)v2.x-v1.x, 2) + pow((double)v2.y - v1.y, 2) + pow((double)v2.z - v1.z, 2));
 }
 
 Vector3& Vector3::operator+(Vector3 other)

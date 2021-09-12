@@ -42,7 +42,7 @@ namespace IO {
 	/// <exception cref="::Exceptions::OutOfMemoryException"></exception>
 	/// <exception cref="::IO::Exceptions::IOException"></exception>
 	bool SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* cstr_FullPath, int* cstr_FullPathLength, bool b_SearchSubdirectories);
-	bool SearchDriveForFile(char* cstr_Filename, char* cstr_DriveLetter, char* cstr_FullPath);
+	bool SearchDriveForFile(char* cstr_Filename, char* cstr_DriveGUID, char* cstr_FullPath);
 	bool SearchSystemForFile(char* cstr_Filename, char* cstr_FullPath);
 
 	//int EnumerateLogicalDrives(); Unused for now

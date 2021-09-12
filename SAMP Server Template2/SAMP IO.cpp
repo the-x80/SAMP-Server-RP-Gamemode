@@ -41,7 +41,7 @@
 			LARGE_INTEGER li_qpcFreq;\
 			QueryPerformanceCounter(&li_qpcEnd);\
 			QueryPerformanceFrequency(&li_qpcFreq);\
-			DEBUG_MESSAGE("Execution time:%f\nQPCStart %u\nQPCEnd %u\n", (float)((li_qpcEnd.LowPart - li_qpcStart.LowPart) / li_qpcFreq.LowPart), li_qpcStart.LowPart, li_qpcEnd.LowPart);\
+			DEBUG_MESSAGE("Execution time:%f\nQPCStart %u\nQPCEnd %u\n", ((float)(li_qpcEnd.LowPart - li_qpcStart.LowPart) / (float)li_qpcFreq.LowPart), li_qpcStart.LowPart, li_qpcEnd.LowPart);\
 			DEBUG_MESSAGE("Tick count %u\n", li_qpcEnd.LowPart - li_qpcStart.LowPart);
 #endif
 
@@ -104,11 +104,20 @@ void SAMP_SDK::IO::SearchForSanAndreasDirectory()
 #endif
 			char* cstr_SearchPath = new char[MAX_PATH];
 			memset(cstr_SearchPath, 0, sizeof(char) * MAX_PATH);
-			sprintf(cstr_SearchPath, "%s", cstr_VolumePathNames + i);
+			sprintf(cstr_SearchPath, "%sProgram Files\\", cstr_VolumePathNames + i);
 			int n_FullPathLength = MAX_PATH;
 			char* cstr_FullPath = new char[n_FullPathLength];
 
-			::IO::SearchFolderForFile("gta-sa.exe", cstr_SearchPath, cstr_FullPath, &n_FullPathLength, true);
+			if (::IO::SearchFolderForFile("gta_sa.exe", cstr_SearchPath, cstr_FullPath, &n_FullPathLength, true) == true) {
+#ifdef _DEBUG
+				DEBUG_MESSAGE("gta_sa.exe found at location %s\n", cstr_FullPath);
+#endif
+			}
+			else {
+#ifdef _DEBUG
+				DEBUG_MESSAGE("gta_sa.exe not found\n");
+#endif
+			}
 			delete[] cstr_SearchPath;
 		}
 

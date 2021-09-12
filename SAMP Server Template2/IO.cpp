@@ -104,6 +104,10 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 				throw new ::Exceptions::OutOfMemoryException();
 			}
 
+			memset(cstr_FullPath, 0, *cstr_FullPathLength);
+			memcpy_s(cstr_FullPath, *cstr_FullPathLength, cstr_SearchPath, strlen(cstr_SearchPath) - 1);
+			memcpy_s(cstr_FullPath + (strlen(cstr_FullPath)), *cstr_FullPathLength - (strlen(cstr_FullPath)), fd_FindData.cFileName, strlen(fd_FindData.cFileName));
+			*cstr_FullPathLength = strlen(cstr_FullPath);
 			break;
 		}
 		else {
@@ -148,7 +152,38 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 	return b_RetVal;
 }
 
-bool IO::SearchDriveForFile(char* cstr_Filename, char* cstr_DriveLetter, char* cstr_FullPath)
+struct LogicalDriveWorkerThreadData {
+
+};
+void SearchDriveForFileLogicalDriveWorkerThread(char* cstr_DriveLetter) {
+
+}
+bool IO::SearchDriveForFile(char* cstr_Filename, char* cstr_DriveGUID, char* cstr_FullPath)
 {
+	return false;
+}
+
+struct DriveWorkerThreadData {
+
+};
+void SearchSystemForFileDriveWorkerThread(char* cstr_DriveGUID) {
+
+}
+bool IO::SearchSystemForFile(char* cstr_Filename, char* cstr_FullPath)
+{
+	char cstr_VolumeGUID[MAX_PATH] = "";
+	HANDLE h_VolumeSearch = FindFirstVolume(cstr_VolumeGUID, ARRAYSIZE(cstr_VolumeGUID));
+	while (true) {
+		IO::SearchDriveForFile(cstr_Filename, cstr_VolumeGUID, cstr_FullPath);
+		BOOL b_FindVolumeNextResult = FindNextVolume(h_VolumeSearch, cstr_VolumeGUID, ARRAYSIZE(cstr_VolumeGUID));
+		if (b_FindVolumeNextResult == FALSE) {
+			switch (GetLastError()) {
+			case ERROR_NO_MORE_FILES:
+				break;
+			}
+
+			break;
+		}
+	}
 	return false;
 }
