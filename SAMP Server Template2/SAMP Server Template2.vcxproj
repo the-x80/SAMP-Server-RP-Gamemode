@@ -325,6 +325,7 @@
     <ClInclude Include="Debugger.h" />
     <ClInclude Include="DebugMacros.h" />
     <ClInclude Include="Delegate.h" />
+    <ClInclude Include="DeviceInfo.h" />
     <ClInclude Include="Diagnostics.h" />
     <ClInclude Include="Dictionary.h" />
     <ClInclude Include="Event System.h" />
@@ -334,6 +335,7 @@
     <ClInclude Include="Gamemode.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GenericEventTypes.h" />
+    <ClInclude Include="InfoObject.h" />
     <ClInclude Include="Int32.h" />
     <ClInclude Include="IO.h" />
     <ClInclude Include="JSONDocument.h" />

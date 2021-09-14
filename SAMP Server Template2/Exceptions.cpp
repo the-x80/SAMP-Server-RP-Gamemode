@@ -15,6 +15,8 @@
 #include "StackTrace.h"
 
 #include <string>
+#undef _DEBUG
+#include "DebugMacros.h"
 
 
 
@@ -76,21 +78,37 @@ Exceptions::Exception::Exception() noexcept
 
 Exceptions::Exception::Exception(const char* msg) noexcept
 {
+	DEBUG_START(1024);
+	DEBUG_MESSAGE("Started\n");
 	n_WindowsLastErrorCode = GetLastError();
 
+	DEBUG_MESSAGE("Formatting the message \"%s\"\n", msg);
 	int n_MessageLength = strlen(msg);
-	this->message = new char[n_MessageLength+1];
-	memcpy_s(this->message, n_MessageLength+1, '\0', n_MessageLength+1);
-	strcpy_s(this->message, n_MessageLength, msg);
+	try {
+		this->message = new char[n_MessageLength + 1];
+	}
+	catch (std::bad_alloc e) {
+		DEBUG_MESSAGE("Bad allocation exception.\n");
+	}
+	DEBUG_MESSAGE("Zeroing out the message\n");
+	memset(this->message, 0, n_MessageLength+1);
+	DEBUG_MESSAGE("Copying the message. Size of the message is %d\n", n_MessageLength);
+	memcpy_s(this->message, n_MessageLength, msg, n_MessageLength);
 
 	this->cstr_FullMessage = new char[0];
+
+	DEBUG_MESSAGE("Performing StackTrace.\n");
 	this->stackTrace = new StackTrace(1);
 
+	DEBUG_MESSAGE("Setting this->e_InnerException to nullptr.\n");
 	this->e_InnerException = nullptr;
 
+	DEBUG_MESSAGE("Creating a DebugMethodInfo object.\n");
 	this->mi_Method = DebugMethodInfo();
 
 	this->n_SourceFileLine = 0;
+	DEBUG_MESSAGE("Ended\n");
+	DEBUG_STOP;
 }
 
 Exceptions::Exception::~Exception()

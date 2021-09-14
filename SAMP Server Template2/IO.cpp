@@ -6,7 +6,7 @@ IO::Exceptions::IOException::IOException() noexcept
 {
 }
 
-IO::Exceptions::IOException::IOException(char* message) noexcept : ::Exceptions::Exception(message)
+IO::Exceptions::IOException::IOException(char* msg) noexcept : ::Exceptions::Exception(msg)
 {
 	
 }
@@ -15,7 +15,7 @@ IO::Exceptions::InvalidPathException::InvalidPathException() noexcept
 {
 }
 
-IO::Exceptions::InvalidPathException::InvalidPathException(char* message) noexcept : Exceptions::IOException(message)
+IO::Exceptions::InvalidPathException::InvalidPathException(char* msg) noexcept : Exceptions::IOException(msg)
 {
 	
 }

@@ -61,7 +61,19 @@
 					DEBUG_MESSAGE("Tick count %u\n", li_qpcEnd.LowPart - li_qpcStart.LowPart);\
 					DEBUG_STOP;\
 				}
-#endif
 
+#else//_DEBUG
+	#ifdef _CRT_SECURE_NO_WARNINGS
+		#define DEBUG_START(bufferSize)
+		#define DEBUG_MESSAGE(msg, ...)
+		#define DEBUG_STOP
+	#else
+		#define DEBUG_START(bufferSize)
+		#define DEBUG_MESSAGE(msg, ...)
+		#define DEBUG_STOP
+	#endif
+	#define DIAGNOSTICS_START
+	#define DIAGNOSTICS_END
+#endif//_DEBUG
 
-#endif
+#endif//DEBUG_MACROS_H

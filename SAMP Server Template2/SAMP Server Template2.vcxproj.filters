@@ -209,6 +209,12 @@
     <ClInclude Include="DebugMacros.h">
       <Filter>Framework\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="DeviceInfo.h">
+      <Filter>Framework\Diagnostics\Info Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoObject.h">
+      <Filter>Framework\Diagnostics\Info Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">

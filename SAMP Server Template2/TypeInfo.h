@@ -1,7 +1,9 @@
 #ifndef TYPE_INFO_H
 #define TYPE_INFO_H
 
-class TypeInfo {
+#include "InfoObject.h"
+
+class TypeInfo : public InfoObject{
 public:
 	char* cstr_TypeName;
 };

@@ -17,7 +17,7 @@ namespace IO {
 			//TODO(Dev): Develop some data structure that can be used to describe this exceptions state
 		public:
 			IOException() noexcept;
-			IOException(char* message) noexcept;
+			IOException(char* msg) noexcept;
 		};
 		/// <summary>
 		/// Thrown when there is an invalid path passed to a function.
@@ -25,7 +25,7 @@ namespace IO {
 		class InvalidPathException : public IOException{
 		public:
 			InvalidPathException() noexcept;
-			InvalidPathException(char* message) noexcept;
+			InvalidPathException(char* msg) noexcept;
 		};
 	}
 

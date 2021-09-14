@@ -1,7 +1,9 @@
 #ifndef MODULE_INFO_H
 #define MODULE_INFO_H
 
-class ModuleInfo {
+#include "InfoObject.h"
+
+class ModuleInfo : public InfoObject{
 public:
 	void* p_ModuleAddress;
 	char* cstr_ModuleName;

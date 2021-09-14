@@ -4,10 +4,11 @@
 #include <Windows.h>
 #include <DbgHelp.h>
 
+#include "InfoObject.h"
 #include "ModuleInfo.h"
 #include "TypeInfo.h"
 
-class MethodInfo {
+class MethodInfo  : public InfoObject{
 public:
 	char* cstr_MethodName;
 	int n_ParameterCount;
