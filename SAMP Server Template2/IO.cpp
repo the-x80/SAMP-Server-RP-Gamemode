@@ -30,18 +30,23 @@ int IO::GetLogicalDriveCount()
 
 bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* cstr_FullPath, int* cstr_FullPathLength, bool b_SearchSubdirectories)
 {
+	DEBUG_START(1024);
 #pragma region Sanity checks
 	if (cstr_Filename == nullptr) {
+		DEBUG_STOP;
 		throw new ::Exceptions::ArgumentNullException();
 	}
 	if (cstr_FolderPath == nullptr) {
+		DEBUG_STOP;
 		throw new ::Exceptions::ArgumentNullException();
 	}
 	if (cstr_FullPath == nullptr) {
+		DEBUG_STOP;
 		throw new ::Exceptions::ArgumentNullException();
 	}
 
 	if (memcmp(cstr_FolderPath, "\\\\.\\", sizeof(char)*strlen("\\\\.\\")) == 0) {
+		DEBUG_STOP;
 		throw new IO::Exceptions::InvalidPathException("cstr_FolderPath argument has a device namespace prefix.");
 	}
 
@@ -69,10 +74,22 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 	HANDLE h_FindFile = FindFirstFile(cstr_SearchPath, &fd_FindData);
 	if (h_FindFile == INVALID_HANDLE_VALUE) {
 		//Handle the error.
-		throw Exceptions::IOException("FindFirstFile windows function could not create a handle.");
+		switch (GetLastError()) {
+		case ERROR_PATH_NOT_FOUND:
+			return false;
+		case ERROR_ACCESS_DENIED://This is normal behaviour. Just skip the file.
+			return false;
+		case ERROR_NO_MORE_FILES:
+			return false;
+		case ERROR_NOT_READY://This will be handeled properly later.
+			//TODO: Handle the ERROR_NOT_READY error set by FindFirstFile properly.
+			return false;
+		}
+		throw new Exceptions::IOException("FindFirstFile windows function could not create a handle.");
 	}
 
 	bool b_RetVal = false;
+	bool b_FindNextResult = false;
 	do {
 		if (strcmp(cstr_Filename, fd_FindData.cFileName) == 0) {
 			b_RetVal = true;
@@ -91,9 +108,39 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 		else {
 			if ((fd_FindData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && (b_SearchSubdirectories)) {
 				if (strcmp(fd_FindData.cFileName, ".") == 0) {
+					b_FindNextResult = FindNextFile(h_FindFile, &fd_FindData);
+					if (b_FindNextResult == false) {
+						switch (GetLastError()) {
+						case ERROR_PATH_NOT_FOUND:
+							throw new Exceptions::InvalidPathException("ERROR_PATH_NOT_FOUND");
+							break;
+						case ERROR_ACCESS_DENIED://This is normal behaviour. Just skip the file.
+							break;
+						case ERROR_NO_MORE_FILES:
+							break;
+						case ERROR_NOT_READY://This will be handeled properly later.
+							//TODO: Handle the ERROR_NOT_READY error set by FindNextFile properly.
+							break;
+						}
+					}
 					continue;
 				}
 				if (strcmp(fd_FindData.cFileName, "..") == 0) {
+					b_FindNextResult = FindNextFile(h_FindFile, &fd_FindData);
+					if (b_FindNextResult == false) {
+						switch (GetLastError()) {
+						case ERROR_PATH_NOT_FOUND:
+							throw new Exceptions::InvalidPathException("ERROR_PATH_NOT_FOUND");
+							break;
+						case ERROR_ACCESS_DENIED://This is normal behaviour. Just skip the file.
+							break;
+						case ERROR_NO_MORE_FILES:
+							break;
+						case ERROR_NOT_READY://This will be handeled properly later.
+							//TODO: Handle the ERROR_NOT_READY error set by FindNextFile properly.
+							break;
+						}
+					}
 					continue;
 				}
 
@@ -113,6 +160,9 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 				catch (::Exceptions::OutOfMemoryException* e) {
 					b_RetVal = FALSE;
 				}
+				catch (Exceptions::InvalidPathException* e) {
+					throw new Exceptions::InvalidPathException();
+				}
 				catch (::Exceptions::Exception* e) {
 					b_RetVal = FALSE;
 				}
@@ -121,12 +171,27 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 				}
 			}
 		}
-	} while (FindNextFile(h_FindFile, &fd_FindData));
+		b_FindNextResult = FindNextFile(h_FindFile, &fd_FindData);
+		if (b_FindNextResult == false) {
+			switch (GetLastError()) {
+			case ERROR_PATH_NOT_FOUND:
+				throw new Exceptions::InvalidPathException("ERROR_PATH_NOT_FOUND");
+				break;
+			case ERROR_ACCESS_DENIED://This is normal behaviour. Just skip the file.
+				break;
+			case ERROR_NO_MORE_FILES:
+				break;
+			case ERROR_NOT_READY://This will be handeled properly later.
+				//TODO: Handle the ERROR_NOT_READY error set by FindNextFile properly.
+				break;
+			}
+		}
+	} while (b_FindNextResult);
 	BOOL b_FindCloseResult = FindClose(h_FindFile);
 	if (b_FindCloseResult == FALSE) {
 		//Handle the error.
 	}
-
+	DEBUG_STOP;
 	return b_RetVal;
 }
 

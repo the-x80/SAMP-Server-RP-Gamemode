@@ -37,7 +37,9 @@ void SAMP_SDK::IO::SearchForSanAndreasDirectory()
 #endif
 	char cstr_VolumeGUID[MAX_PATH] = "";
 	HANDLE h_VolumeSearch = FindFirstVolume(cstr_VolumeGUID, ARRAYSIZE(cstr_VolumeGUID));
-	while (true) {
+
+	bool b_SearchResult = false;
+	do {
 		//Find out what logical volumes are linked to this volume
 		BOOL b_GetVolumePathResult = FALSE;
 		char* cstr_VolumePathNames = nullptr;
@@ -67,10 +69,33 @@ void SAMP_SDK::IO::SearchForSanAndreasDirectory()
 			int n_FullPathLength = MAX_PATH;
 			char* cstr_FullPath = new char[n_FullPathLength];
 
-			if (::IO::SearchFolderForFile("gta_sa.exe", cstr_SearchPath, cstr_FullPath, &n_FullPathLength, true) == true) {
+
+			
+			try {
+				b_SearchResult = ::IO::SearchFolderForFile("gta_sa.exe", cstr_SearchPath, cstr_FullPath, &n_FullPathLength, true);
+			}
+			catch (::Exceptions::ArgumentNullException* e) {
+
+			}
+			catch (::Exceptions::OutOfMemoryException* e) {
+
+			}
+			catch (::IO::Exceptions::InvalidPathException* e) {
+
+			}
+			catch (::IO::Exceptions::IOException* e) {
+
+			}
+			catch (::Exceptions::Exception* e) {
+
+			}
+
+
+			if (b_SearchResult == true) {
 #ifdef _DEBUG
 				DEBUG_MESSAGE("gta_sa.exe found at location %s\n", cstr_FullPath);
 #endif
+				delete[] cstr_SearchPath;
 				break;
 			}
 			else {
@@ -95,7 +120,7 @@ void SAMP_SDK::IO::SearchForSanAndreasDirectory()
 
 			break;
 		}
-	}
+	} while (b_SearchResult == false);
 	FindVolumeClose(h_VolumeSearch);
 	h_VolumeSearch = INVALID_HANDLE_VALUE;
 #ifdef _DEBUG
