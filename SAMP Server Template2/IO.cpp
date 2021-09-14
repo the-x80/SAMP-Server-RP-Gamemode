@@ -2,25 +2,22 @@
 #include "IO.h"
 #include "DebugMacros.h"
 
+IO::Exceptions::IOException::IOException()
+{
+}
 
+IO::Exceptions::IOException::IOException(char* message) : ::Exceptions::Exception(message)
+{
+	
+}
 
 IO::Exceptions::InvalidPathException::InvalidPathException()
 {
 }
 
-IO::Exceptions::InvalidPathException::InvalidPathException(char* message)
+IO::Exceptions::InvalidPathException::InvalidPathException(char* message) : Exceptions::IOException(message)
 {
-	if (this->message == nullptr) {
-		this->message = new char[strlen(message)+1];
-		memset(this->message, 0, strlen(message) + 1);
-	}
-	else {
-		delete[] this->message;
-		this->message = new char[strlen(message) + 1];
-		memset(this->message, 0, strlen(message) + 1);
-	}
-
-	memcpy(this->message, message, strlen(message));
+	
 }
 
 
@@ -72,6 +69,7 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 	HANDLE h_FindFile = FindFirstFile(cstr_SearchPath, &fd_FindData);
 	if (h_FindFile == INVALID_HANDLE_VALUE) {
 		//Handle the error.
+		throw Exceptions::IOException();
 	}
 
 	bool b_RetVal = false;

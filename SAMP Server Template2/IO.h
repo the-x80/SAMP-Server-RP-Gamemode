@@ -14,8 +14,14 @@ namespace IO {
 		/// Thrown when an IO exception occurs.
 		/// </summary>
 		class IOException : public ::Exceptions::Exception {
-
+			//TODO(Dev): Develop some data structure that can be used to describe this exceptions state
+		public:
+			IOException();
+			IOException(char* message);
 		};
+		/// <summary>
+		/// Thrown when there is an invalid path passed to a function.
+		/// </summary>
 		class InvalidPathException : public IOException{
 		public:
 			InvalidPathException();
