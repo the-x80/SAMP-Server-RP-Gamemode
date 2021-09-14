@@ -323,6 +323,7 @@
     <ClInclude Include="Console.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Debugger.h" />
+    <ClInclude Include="DebugMacros.h" />
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="Diagnostics.h" />
     <ClInclude Include="Dictionary.h" />

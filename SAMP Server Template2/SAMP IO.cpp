@@ -2,48 +2,7 @@
 #include "Framework.h"
 #include <Windows.h>
 #include "SAMP IO.h"
-
-
-
-#ifdef _DEBUG
-#define DEBUG_INITIALIZE
-
-
-
-
-#define DEBUG_START												\
-				char* cstr_DebugMessage = new char[2048];		\
-				memset(cstr_DebugMessage, 0, 2048*sizeof(char));
-				
-
-#define DEBUG_MESSAGE(msg, ...)												\
-				memset(cstr_DebugMessage, 0, sizeof(char)*2048);			\
-				sprintf(cstr_DebugMessage, "%s::%s", __func__, msg);		\
-				{															\
-					char* cstr_FormatedMessage = new char[2048];				\
-					sprintf(cstr_FormatedMessage, cstr_DebugMessage, __VA_ARGS__);\
-					OutputDebugString(cstr_FormatedMessage);				\
-					delete[] cstr_FormatedMessage;							\
-				}
-				
-
-#define DEBUG_END							\
-				delete[] cstr_DebugMessage;	\
-				cstr_DebugMessage = nullptr;
-
-
-#define DIAGNOSTICS_START\
-			LARGE_INTEGER li_qpcStart;\
-			QueryPerformanceCounter(&li_qpcStart);
-
-#define DIAGNOSTICS_END\
-			LARGE_INTEGER li_qpcEnd;\
-			LARGE_INTEGER li_qpcFreq;\
-			QueryPerformanceCounter(&li_qpcEnd);\
-			QueryPerformanceFrequency(&li_qpcFreq);\
-			DEBUG_MESSAGE("Execution time:%f\nQPCStart %u\nQPCEnd %u\n", ((float)(li_qpcEnd.LowPart - li_qpcStart.LowPart) / (float)li_qpcFreq.LowPart), li_qpcStart.LowPart, li_qpcEnd.LowPart);\
-			DEBUG_MESSAGE("Tick count %u\n", li_qpcEnd.LowPart - li_qpcStart.LowPart);
-#endif
+#include "DebugMacros.h"
 
 
 
@@ -72,7 +31,7 @@ void SAMP_SDK::IO::SearchForSanAndreasDirectory()
 	//throw new ::Exceptions::NotImplementedException();
 
 #ifdef _DEBUG
-	DEBUG_START;
+	DEBUG_START(1024);
 	DIAGNOSTICS_START;
 	DEBUG_MESSAGE("Started\n");
 #endif
@@ -112,6 +71,7 @@ void SAMP_SDK::IO::SearchForSanAndreasDirectory()
 #ifdef _DEBUG
 				DEBUG_MESSAGE("gta_sa.exe found at location %s\n", cstr_FullPath);
 #endif
+				break;
 			}
 			else {
 #ifdef _DEBUG
@@ -141,6 +101,6 @@ void SAMP_SDK::IO::SearchForSanAndreasDirectory()
 #ifdef _DEBUG
 	DIAGNOSTICS_END;
 	DEBUG_MESSAGE("Ended\n");
-	DEBUG_END
+	DEBUG_STOP;
 #endif
 }

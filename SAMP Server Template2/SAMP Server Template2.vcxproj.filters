@@ -206,6 +206,9 @@
     <ClInclude Include="IO.h">
       <Filter>Framework\IO</Filter>
     </ClInclude>
+    <ClInclude Include="DebugMacros.h">
+      <Filter>Framework\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SAMP SDK Wrapper">

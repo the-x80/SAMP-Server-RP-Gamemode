@@ -1,51 +1,27 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "IO.h"
+#include "DebugMacros.h"
 
 
 
-#ifdef _DEBUG
-#define DEBUG_INITIALIZE
+IO::Exceptions::InvalidPathException::InvalidPathException()
+{
+}
 
+IO::Exceptions::InvalidPathException::InvalidPathException(char* message)
+{
+	if (this->message == nullptr) {
+		this->message = new char[strlen(message)+1];
+		memset(this->message, 0, strlen(message) + 1);
+	}
+	else {
+		delete[] this->message;
+		this->message = new char[strlen(message) + 1];
+		memset(this->message, 0, strlen(message) + 1);
+	}
 
-
-
-#define DEBUG_START												\
-				char* cstr_DebugMessage = new char[2048];		\
-				memset(cstr_DebugMessage, 0, 2048*sizeof(char));
-
-
-#define DEBUG_MESSAGE(msg, ...)												\
-				memset(cstr_DebugMessage, 0, sizeof(char)*2048);			\										\
-				sprintf_s(cstr_DebugMessage, 2048 * sizeof(char), "%s::%s", __func__, msg);		\
-				{															\
-					char* cstr_FormatedMessage = new char[2048];			\
-					sprintf_s(cstr_FormatedMessage, 2048*sizeof(char), cstr_DebugMessage, __VA_ARGS__);\
-					OutputDebugString(cstr_FormatedMessage);				\
-					delete[] cstr_FormatedMessage;							\
-				}
-
-
-#define DEBUG_END							\
-				delete[] cstr_DebugMessage;	\
-				cstr_DebugMessage = nullptr;
-
-
-#define DIAGNOSTICS_START\
-			LARGE_INTEGER li_qpcStart;\
-			QueryPerformanceCounter(&li_qpcStart);
-
-#define DIAGNOSTICS_END\
-			LARGE_INTEGER li_qpcEnd;\
-			LARGE_INTEGER li_qpcFreq;\
-			QueryPerformanceCounter(&li_qpcEnd);\
-			QueryPerformanceFrequency(&li_qpcFreq);\
-			DEBUG_MESSAGE("Execution time:%f\nQPCStart %u\nQPCEnd %u\n", (float)((li_qpcEnd.LowPart - li_qpcStart.LowPart) / li_qpcFreq.LowPart), li_qpcStart.LowPart, li_qpcEnd.LowPart);\
-			DEBUG_MESSAGE("Tick count %u\n", li_qpcEnd.LowPart - li_qpcStart.LowPart);
-#endif
-
-
-
-
+	memcpy(this->message, message, strlen(message));
+}
 
 
 
@@ -66,6 +42,10 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 	}
 	if (cstr_FullPath == nullptr) {
 		throw new ::Exceptions::ArgumentNullException();
+	}
+
+	if (memcmp(cstr_FolderPath, "\\\\.\\", sizeof(char)*strlen("\\\\.\\")) == 0) {
+		throw new IO::Exceptions::InvalidPathException("cstr_FolderPath argument has a device namespace prefix.");
 	}
 
 	//Check if the csrt_FolderPath ends with a trailing slash
@@ -187,3 +167,5 @@ bool IO::SearchSystemForFile(char* cstr_Filename, char* cstr_FullPath)
 	}
 	return false;
 }
+
+

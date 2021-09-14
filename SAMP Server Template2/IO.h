@@ -16,6 +16,11 @@ namespace IO {
 		class IOException : public ::Exceptions::Exception {
 
 		};
+		class InvalidPathException : public IOException{
+		public:
+			InvalidPathException();
+			InvalidPathException(char* message);
+		};
 	}
 
 	/// <summary>
@@ -41,6 +46,7 @@ namespace IO {
 	/// <exception cref="::Exceptions::ArgumentNullException"></exception>
 	/// <exception cref="::Exceptions::OutOfMemoryException"></exception>
 	/// <exception cref="::IO::Exceptions::IOException"></exception>
+	/// <exception cref="::IO::Exceptions::InvalidPathException"></exception>
 	bool SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* cstr_FullPath, int* cstr_FullPathLength, bool b_SearchSubdirectories);
 	bool SearchDriveForFile(char* cstr_Filename, char* cstr_DriveGUID, char* cstr_FullPath);
 	bool SearchSystemForFile(char* cstr_Filename, char* cstr_FullPath);
