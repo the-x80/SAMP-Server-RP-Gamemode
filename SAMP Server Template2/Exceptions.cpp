@@ -55,7 +55,7 @@ public:
 
 Exceptions::Exception::Exception() noexcept
 {
-	Debug::Log("Exception thrown");
+	n_WindowsLastErrorCode = GetLastError();
 	
 	this->message = new char[0];
 	this->cstr_FullMessage = new char[0];
@@ -77,6 +77,8 @@ Exceptions::Exception::Exception() noexcept
 
 Exceptions::Exception::Exception(const char* msg) noexcept
 {
+	n_WindowsLastErrorCode = GetLastError();
+
 	int n_MessageLength = strlen(msg);
 	this->message = new char[n_MessageLength+1];
 	memcpy_s(this->message, n_MessageLength+1, '\0', n_MessageLength+1);

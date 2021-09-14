@@ -24,6 +24,8 @@ namespace Exceptions {
 		DebugMethodInfo mi_Method;
 
 		Exception* e_InnerException;
+
+		int n_WindowsLastErrorCode;
 	public:
 		Exception() noexcept;
 		Exception(const char* msg) noexcept;

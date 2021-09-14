@@ -2,20 +2,20 @@
 #include "IO.h"
 #include "DebugMacros.h"
 
-IO::Exceptions::IOException::IOException()
+IO::Exceptions::IOException::IOException() noexcept
 {
 }
 
-IO::Exceptions::IOException::IOException(char* message) : ::Exceptions::Exception(message)
+IO::Exceptions::IOException::IOException(char* message) noexcept : ::Exceptions::Exception(message)
 {
 	
 }
 
-IO::Exceptions::InvalidPathException::InvalidPathException()
+IO::Exceptions::InvalidPathException::InvalidPathException() noexcept
 {
 }
 
-IO::Exceptions::InvalidPathException::InvalidPathException(char* message) : Exceptions::IOException(message)
+IO::Exceptions::InvalidPathException::InvalidPathException(char* message) noexcept : Exceptions::IOException(message)
 {
 	
 }
@@ -69,7 +69,7 @@ bool IO::SearchFolderForFile(char* cstr_Filename, char* cstr_FolderPath, char* c
 	HANDLE h_FindFile = FindFirstFile(cstr_SearchPath, &fd_FindData);
 	if (h_FindFile == INVALID_HANDLE_VALUE) {
 		//Handle the error.
-		throw Exceptions::IOException();
+		throw Exceptions::IOException("FindFirstFile windows function could not create a handle.");
 	}
 
 	bool b_RetVal = false;
