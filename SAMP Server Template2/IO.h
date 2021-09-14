@@ -24,6 +24,14 @@ namespace IO {
 	}
 
 	/// <summary>
+	/// Flags used to describe the searching behaviour
+	/// </summary>
+	enum class SearchFlags {
+		Default = 0,
+		SkipWindowsDirectories = 1
+	};
+
+	/// <summary>
 	/// Retrieves the number of logical drives and returns the result
 	/// </summary>
 	/// <returns>The number of logical drives.</returns>
