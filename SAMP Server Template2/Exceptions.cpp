@@ -62,12 +62,11 @@ Exceptions::Exception::Exception() noexcept
 
 	this->e_InnerException = nullptr;
 
-	this->mi_Method = DebugMethodInfo();
-
 	this->n_SourceFileLine = 0;
 
 	//Note StackTrace does not have full functionality for now.
 	this->stackTrace = new StackTrace(1);
+	this->mi_Method = DebugMethodInfo();
 
 	//A debugger is attached. What you could do is to display a Window detailing the exception.
 	if (IsDebuggerPresent() == TRUE) {

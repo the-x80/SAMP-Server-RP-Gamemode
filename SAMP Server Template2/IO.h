@@ -16,16 +16,16 @@ namespace IO {
 		class IOException : public ::Exceptions::Exception {
 			//TODO(Dev): Develop some data structure that can be used to describe this exceptions state
 		public:
-			IOException();
-			IOException(char* message);
+			IOException() noexcept;
+			IOException(char* message) noexcept;
 		};
 		/// <summary>
 		/// Thrown when there is an invalid path passed to a function.
 		/// </summary>
 		class InvalidPathException : public IOException{
 		public:
-			InvalidPathException();
-			InvalidPathException(char* message);
+			InvalidPathException() noexcept;
+			InvalidPathException(char* message) noexcept;
 		};
 	}
 
